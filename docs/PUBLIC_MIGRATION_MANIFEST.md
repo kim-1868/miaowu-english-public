@@ -90,4 +90,4 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 
 - `public/reader-panels.js`：只有页面层的章节抽屉、词汇抽屉、释义显示，CSS/ARIA 状态由本组件同步。真实书籍列表、章节权限、词汇拉取、朗读引擎、保存阅读进度仍全部在私人仓库。
 - 该公共独立组件无自动安装逻辑。现有私人 `app.js` 继续是用户网站入口，未来需受控替换旧 `onclick` 与相关状态，避免重复事件和回归问题。
-- 公共白名单/构建包从 27 升到 28 个文件；测试及最终 SHA 将在通过 Actions 后补记。
+- 公共白名单/构建包从 27 升到 28 个文件。**已完成验收**：[PR #22](https://github.com/kim-1868/miaowu-english-public/pull/22) 合并 SHA `9db45dba7b072f716992eb0fdba2e0517886ec86`；Node CI 42391549720、Chromium 42391549751、main 构建 42391644048 通过，Artifact ID `13581776893`。私人原代码、数据库与部署未变。

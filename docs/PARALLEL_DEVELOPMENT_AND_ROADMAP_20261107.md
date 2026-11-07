@@ -162,3 +162,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 16. PUBLIC-11-04 阅读面板纯 UI 抽离（2026-11-08）
 
 独立公共模块 `reader-panels.js` 仅实现目录/词汇抽屉、释义显示与关闭行为，使用同名 DOM ID/原 CSS class；不复制私有源代码的业务/音频内容。公共合成 Node + Chromium 验证完成后由公共仓库交付固定 SHA 28 文件包，私人站需要消除旧事件处理后再整合，继续保护同步开发。
+
+
+## 17. PUBLIC-11-04 测试及打包完成（2026-11-08）
+
+阅读目录/词汇抽屉/释义展示层 [PR #22](https://github.com/kim-1868/miaowu-english-public/pull/22) 已 Squash 合并公共 `main`，提交 `9db45dba7b072f716992eb0fdba2e0517886ec86`。Node [42391549720](https://github.com/kim-1868/miaowu-english-public/actions/runs/42391549720)、Chromium [42391549751](https://github.com/kim-1868/miaowu-english-public/actions/runs/42391549751)、main [42391644048](https://github.com/kim-1868/miaowu-english-public/actions/runs/42391644048) 成功，28 文件 Artifact ID `13581776893`。对照私人开发固定基线 20 同 SHA、4 个待审阅差异、4 个新增展示组件。下一步继续公开视图模块，私人真实业务仅在候选阶段整合和验收；本轮未改私人 V1.1、预览、生产与 D1。

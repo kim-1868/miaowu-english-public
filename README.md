@@ -4,7 +4,7 @@
 
 ## 本次已落地
 
-- 当前交付包有 **27 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 3 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
+- 当前交付包有 **28 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 4 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
 - 网站公告及历史记录、手机桌面安装教程保留了原 V1.1 公共端 JS，并且通过了合成数据下的交互测试。
 - 新建 `showcase/index.html`：使用真实组件 + 合成公告展示效果，绝不访问生产 D1、用户订单、小说或词库。
 - `npm run check` 包含精确文件白名单、常见密钥特征与 JS 语法检查，`npm test` 用 Node 22 内置测试验证基本行为。
@@ -101,3 +101,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-04：纯展示阅读工具栏模块
 
 公共 `public/reader-panels.js` 通过 `MiaowuReaderPanels.create({document,onGlossChange}).mount()` 提供目录/词汇面板互斥开关、键盘 Esc/遮罩关闭、ARIA 状态与释义可见性切换。它不包含朗读、阅读进度、会员检查或私有 API；不和已有 `reader-preferences.js` 重复负责字体/主题。见 [合成阅读工具栏预览](showcase/reader-panels-contract.html)。私人原 `app.js` 仍运行，尚未集成到正式站。
+
+## PUBLIC-11-04 完成记录（2026-11-08）
+
+阅读目录、章节词汇抽屉与释义切换 [公共 PR #22](https://github.com/kim-1868/miaowu-english-public/pull/22) 已完成 Node、Chromium 合成页面和公共 `main` 自动验收。交付 SHA `9db45dba7b072f716992eb0fdba2e0517886ec86`，28 个前端文件，Artifact ID `13581776893`。固定私人基线对照：20 一致、4 有差异、4 个新公共组件待集成；**不是私人站已上线的功能**。
