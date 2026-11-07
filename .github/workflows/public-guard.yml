@@ -1,4 +1,4 @@
-# 只对公共仓库执行轻量安全门禁。正式部署与私有数据集成必须由私人仓库负责。
+# Public-only offline UI validation. No repository write access, secrets, D1, or deployment.
 name: Public repo lightweight guard
 
 on:
@@ -13,28 +13,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  public-file-boundary:
+  public-ui:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Check repository boundary (tracked paths only)
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -s README.md
-          while IFS= read -r -d '' file; do
-            case "/${file,,}" in
-              */.env|*/.env.*|*/private/*|*/secrets/*|*/content/drafts/*|*/content/editorial/*|*/content/release-packages/*|*/content/review-packages/*|*/db/*|*/deploy/*|*/backups/*|*/backup/*|*.pem|*.p12|*.pfx|*.sqlite|*.sqlite3|*.db|*.sql|*.key)
-                echo "::error::Disallowed path for public repository: $file"
-                exit 1
-                ;;
-            esac
-          done < <(git ls-files -z)
-          echo "Path boundary check passed. Content/manual review is still required before any migration."
-      - name: Verify Git whitespace and conflict markers in patches
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Audit approved public files and JavaScript syntax
+        run: npm run check
+      - name: Verify safe UI behavior and file boundary
+        run: npm test
+      - name: Verify Git formatting and conflict markers
         shell: bash
         run: |
           git diff --check
