@@ -4,12 +4,14 @@
 
 ## 更新记录
 
-### 2026-11-08 · PUBLIC-11-06｜五个公共 UI 组件的私人安全整合门禁（待 PR 验证）
+### 2026-11-08 · PUBLIC-11-06｜五个公共 UI 组件的私人安全整合门禁（已完成）
 
 - **目标**：防止公开 UI 直接叠加旧私人 `app.js` 导致重复监听、词卡状态乐观覆盖、权限错误或线上进度丢失。
 - **变更**：新增 `docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md` 明确五组件各自接口、私人旧函数审阅点、授权/收藏/词义 ID 数据边界、冻结 SHA、逐项替换、私人 Gate、备份与回退。
 - **公共自动验证**：新增 `tests/public11-integration-boundary.test.mjs` 核对 5 组件已审核白名单、只显式导出 `create()`、无私有网络调用，且公共首页并未自动装载新控制器；不涉及私人仓库运行器。
 - **交付范围**：本轮只加公共开发/测试文档与安全合同；29 个公共 UI 交付文件数量不变、私人原站无更改。关联 [PUBLIC-11 Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。
+- **最终结果**：[PR #24](https://github.com/kim-1868/miaowu-english-public/pull/24) 已 Squash 合并至公共 `main`，提交 `3cf89c44188c8f4a2a5717b70f3a4ed5d628ab48`。[PR Node 安全/防双重绑定检查 42393623856](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393623856) 与 [合并后公共 main 检查 42393655589](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393655589) 均通过。
+- **新的可验证交付快照**：`wordletter-public-ui-3cf89c44188c8f4a2a5717b70f3a4ed5d628ab48`，29 个文件及 SHA-256 manifest（Artifact ID `13582676147`）。本 PR 没有改变这 29 个前端文件，仅增加公共 CI 集成安全合同和交接文档。与私人 V1.1 仍是 20 一致、4 旧差异、5 公共新组件待整合。**私人真正接线仍是 0/5，正式/预览站未部署。**
 
 
 ### 2026-11-08 · PUBLIC-11-05｜非阻塞词卡展示和学习按钮合同（已合并）

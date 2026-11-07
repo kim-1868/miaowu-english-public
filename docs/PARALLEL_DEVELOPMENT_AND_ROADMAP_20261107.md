@@ -179,3 +179,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 [PR #23](https://github.com/kim-1868/miaowu-english-public/pull/23) 已 Squash 合并，公共源码交付提交 `8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`。公共 [Node 42393095483](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095483)、[Chromium 42393095543](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095543)、[main 42393184164](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393184164) 全部通过；29 文件 Artifact ID `13581784780`。私人 V1.1 固定基线对照为 20 一致/4 个待审差异/5 个公共新组件。
 
 下一步优先建立**五个新公共组件的私人集成前差异清单与接口接线规则**，但在用户并行修改网站期间不直接改私人 `app.js`，不能重复绑定旧代码；随后由私人候选 Gate 一次性验证注册、授权、阅读、词义身份/去重、收藏/掌握/复习和数据库持久化。公共成功不等于网站已上线。
+
+
+## 20. PUBLIC-11-06 五组件集成前安全门禁完成（2026-11-08）
+
+[PR #24](https://github.com/kim-1868/miaowu-english-public/pull/24) 已合并，公共 `main` 提交 `3cf89c44188c8f4a2a5717b70f3a4ed5d628ab48`。新增 [五组件私人接线/旧逻辑替换清单](PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md) 及公开 Node [防双重绑定/权限边界测试](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393623856)，合并后 [main](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393655589) 通过。29 文件 SHA-256 交付 Artifact ID `13582676147`。**公共组件已开发验收 5/5，私人真正接线仍 0/5**；避免覆盖并行开发中的私人 V1.1。后续必须按私人最新冻结 SHA 走逐项集成及真实功能/权益回归。
