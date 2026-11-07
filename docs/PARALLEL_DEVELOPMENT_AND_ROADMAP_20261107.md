@@ -95,3 +95,13 @@
 - 禁止为省分钟将生产数据库、令牌、内容资产或服务端权限判断转存到公共仓库。
 
 **当前阶段的完成标准**：有可执行的公共研发任务、可核对的迁移基线和并行更改规则；没有擅自发布生产站。
+
+
+## 7. PUBLIC-01 第一轮实施记录（2026-11-07）
+
+- PR：[公共组件演示更新 #4](https://github.com/kim-1868/miaowu-english-public/pull/4)，已 Squash 合并到公共 `main`，合并 SHA `5919925e95bddc2ded6a4aaa2a02fd4b5675770c`。
+- 内容：新增 `showcase/reading-shelf.html` 与 `showcase/reading-shelf.css`，3 个人工虚构书架卡片、日间/夜间阅读文字和合成词卡的静态排版，原组件首页增加演示入口。
+- 安全措施：只使用虚构内容，无真实小说、订单、学习状态、数据库连接；公共白名单与独立测试已补充。
+- 验证：PR 与合并后的公共 Actions 均通过。<https://github.com/kim-1868/miaowu-english-public/actions/runs/42380264106>
+- **尚需补做**：实际浏览器多设备截图/目视对比与可访问性检查。Issue #1 保持开放；这只是公共展示样例，尚未与私人正式站集成。
+- 私人站活动分支 `feature/v11-phase1-mobile-and-install-guide-20261106` 未修改或覆盖。
