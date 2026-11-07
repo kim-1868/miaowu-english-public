@@ -13,6 +13,8 @@ export const APPROVED_PATHS = new Set([
   "showcase/index.html",
   "showcase/showcase.css",
   "showcase/demo-api.js",
+  "showcase/reading-shelf.html",
+  "showcase/reading-shelf.css",
   "public/install-guide.js",
   "public/install-guide.css",
   "public/site-updates.js",
