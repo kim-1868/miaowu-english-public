@@ -11,6 +11,16 @@
 - 该修正仅发生在公共仓库；私人正在开发的 V1.1 和已建立的分页 Draft 候选保持不变。准备在下一项“书架卡片”私人隔离候选中使用通过 CI 的最新公共组件。
 
 
+
+
+### 2026-11-08 · PUBLIC-SF-01｜小说工厂批次合成合同测试（候选）
+
+- **归属**：新增 `scripts/story-batch-contract.mjs` 与 `tests/story-batch-contract.test.mjs`，全部为虚构样本；扩充公共文件白名单、语法检查与边界政策文档。用于新词预留、跨等级隔离、重复章号、词卡引用和密度的离线回归，降低私人重复测试频率。
+- **未迁移**：任何真实书稿、考试候选词库、词卡审校表、用户订单与权限、D1 或生产凭据；没有修改私人业务代码、正式或预览站。
+- **验收**：[公共 PR #25](https://github.com/kim-1868/miaowu-english-public/pull/25) 已 Squash 合并，提交 `eadad2bb58ce56f11a4cb22eecb443d71b856e76`；[公共 Actions #42398587885](https://github.com/kim-1868/miaowu-english-public/actions/runs/42398587885) 成功：`npm run check`、94/94 Node 测试、公共交付构建、路径白名单检查通过。首轮 CI 发现测试断言错把“单本完成数”当“全批次完成数”，修正后重新运行通过。整个过程**未触发私人仓库 Actions**。
+- **说明**：公共合成测试不等于小说自然度、词卡 IPA 或实际数据库权限验收；本 PR 未改网站生产代码或部署。
+
+
 ### 2026-11-08 · PUBLIC-11-07｜公共分页组件首次进入私人隔离接线候选（离线验证成功）
 
 - **候选代码已建立，尚未合并上线**：私人 [Draft PR #190](https://github.com/kim-1868/miaowu-english/pull/190)，基于私人 V1.1 固定 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，候选提交 `1e98a8ce9a1ae50bb1fe7a92ebddd5abbb2cb928`；没有修改活动分支。

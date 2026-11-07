@@ -121,3 +121,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-07 私人隔离候选进度
 
 公共书架分页组件已经作为第一个实际接线候选，进入私人 [Draft PR #190](https://github.com/kim-1868/miaowu-english/pull/190)，其[限定分页离线检查](https://github.com/kim-1868/miaowu-english/actions/runs/42396232279)通过。该 PR 不自动部署、不合入活动分支；后续须基于最新私人 SHA、完整私人 Gate 和用户批准后才能继续。五个公共组件已有一个**隔离候选**，尚无组件正式集成上线。
+
+## 小说工厂公共合成批次回归（2026-11-08）
+
+新增 [批次测试公共/私人边界及检查项目](docs/PUBLIC_STORY_FACTORY_BATCH_TEST_POLICY_20261108.md)。公共 Node CI 只验证虚构书籍任务的章节数量、重复续写、义项新词预留碰撞、标注引用与密度算术；**真实六本小说正文、考试词库、音标/例句、跨书学习记录与上架权限留在私人受控流程**。公共测试成功不代表内容完成或可上架。
