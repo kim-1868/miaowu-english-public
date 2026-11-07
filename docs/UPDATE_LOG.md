@@ -9,7 +9,7 @@
 - **实际代码**：独立 `showcase/story-workbench.html/.css/.mjs` 工作台页面与不依赖后端的内存状态机；创建批次、按章进度模拟、暂停/失败恢复、审核门禁、只可导出带 `notForPublication` 的纯合成状态摘要。
 - **隔离**：不迁移三本旧稿/六本新书正文、私有词库、用户/订单、D1、模型凭据和私人 Git 历史；本页面没有真实 AI 自动生成或出版能力。
 - **自动检查**：扩展公开白名单、Node 状态机测试与 Chromium 多尺寸交互脚本。工作台文件**不加入正式网站 29 文件生产构建白名单**，避免修改已冻结的 V1.1 预览站。
-- **状态**：公共 PR 的 Actions 通过后才能合并，完成后补充 PR/最终 SHA/实际 Actions；本候选不能代表 W2 私人引擎或 W3 连续8章成书已完成。
+- **已完成**：[PR #29](https://github.com/kim-1868/miaowu-english-public/pull/29) 已 Squash 合并至公共 `main`（提交 `c931fc6cfe316e3c790bc6a379f5756a1e372cab`）。[公共 Node/白名单 CI #42401313269](https://github.com/kim-1868/miaowu-english-public/actions/runs/42401313269) 和 [公共 Chromium CI #42401313275](https://github.com/kim-1868/miaowu-english-public/actions/runs/42401313275) 均通过（包含 320/390/1440px 的 W1 创建、暂停、模拟失败恢复、审核与导出）。合成测试全部在公共仓库，不涉及私人 Actions。W2 真实引擎接入、W3 连续8章 AI 生产仍未完成，未部署网站。
 
 
 ### 2026-11-08 · PUBLIC-BUILD-01｜公共完整 Build / SHA-256 复验与审核后 Release（已合并）
