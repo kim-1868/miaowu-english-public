@@ -53,3 +53,7 @@ npm run dev
 公开前端的 18 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
 
 **注意**：构建产物不是完整网站，也不自动推送至私人仓库或生产环境。私人发布流程须对固定 SHA 做逐文件审阅与校验，并在私人环境验证业务/权益和上线门禁；严禁把私人资料复制到公共仓库。
+
+## 公开界面真实浏览器 QA（PUBLIC-07）
+
+对公共 UI 的 PR，公共 `Public synthetic UI Chromium screen matrix` 工作流使用 Playwright 在 `ubuntu-24.04` 检查多种手机/电脑宽度、夜间色彩、按钮触控和阅读字号，保存 **仅合成数据** 的截图供人工检查。测试脚本 `scripts/verify-public-ui-browser.mjs` 只访问本地预览；不代表私人登录、付费权益、D1 或真实设备已验收。
