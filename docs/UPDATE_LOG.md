@@ -4,12 +4,14 @@
 
 ## 更新记录
 
-### 2026-11-08 · PUBLIC-11-05｜非阻塞词卡展示和学习按钮合同（待验收）
+### 2026-11-08 · PUBLIC-11-05｜非阻塞词卡展示和学习按钮合同（已合并）
 
 - **来源与范围**：只审阅私人 V1.1 固定 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 的 `app.js` 词卡纯展示合同，**没有复制词义数据、书籍内容、完整词卡缓存、会员/用户/订单/D1 或保存状态的接口**。
 - **公开交付**：新增 `public/word-card-view.js`（`MiaowuWordCardView.create(...).show(...)`）、`showcase/word-card-contract.html/css/js`（三个虚构词汇），使用 DOM 和 textContent 渲染音标、词义、例句、常用搭配、词序、收藏和已掌握按钮。用户只能发送保存或掌握的意图，**结果以私有端确认为准**。
 - **安全/可用性**：移动底部词卡保持非阻塞、无全屏遮罩，可切换其他词，恶意 HTML 文本安全显示；加载/缺失时禁用学习状态操作，关闭后清空高亮；合成 Node 测试和 Chromium 320/390/1440px 回归。
 - **交付包**：公共白名单及 SHA-256 manifest 从 28 增至 29 文件，合成测试与只读差异预检同步调整；**不自动集成到私人 app.js、不触及 Cloudflare 或 D1**。关联 [PUBLIC-11 Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。
+- **最终验收**：[PR #23](https://github.com/kim-1868/miaowu-english-public/pull/23) Squash 合并到公共 `main`，提交 `8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`。[Node 安全和行为测试 42393095483](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095483)、[Chromium 手机/桌面真实交互 42393095543](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095543)、[合并后 main 构建 42393184164](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393184164) 均通过。
+- **交付产物与分支差异**：已核实 29 文件 SHA-256 Artifact `wordletter-public-ui-8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`（ID `13581784780`）；对照私人 V1.1 提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`：20 相同 Blob、4 个既有公共差异（公告 JS、阅读/响应式/词本 CSS）、5 个新公共组件待整合。私人运行站/D1/预览/生产均未更改。
 
 
 ### 2026-11-08 · PUBLIC-11-04｜阅读目录/词汇抽屉与释义按钮展示层（已合并）

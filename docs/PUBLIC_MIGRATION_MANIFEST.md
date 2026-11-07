@@ -98,3 +98,6 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 - `public/word-card-view.js` 是**公开 UI 新组件**，严格只用调用方传入的词卡展示内容、状态、前后位置，采用 DOM/纯文本渲染；并不包含真实可售卖词库、同词义归并/去重规则的服务器实现、收藏/掌握写入、朗读业务。
 - `showcase/word-card-contract.html/css/js` 是三条虚构例子；合成 Node 与 Chromium 验证文本注入、加载/缺失、按钮回调、底部词卡不阻挡阅读。
 - 扩大公共交付白名单 28→29 文件；私人站继续使用 `app.js`，本轮无自动部署、无 D1 访问。
+
+
+**PUBLIC-11-05 最终交付**：[PR #23](https://github.com/kim-1868/miaowu-english-public/pull/23) 合并提交 `8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`；[Node 42393095483](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095483)、[Chromium 42393095543](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095543)、[main 42393184164](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393184164) 成功；29 文件 Artifact ID `13581784780`，SHA-256 校验清单已生成。私人固定参考版本对照：20 相同、4 个已有差异、5 个公共新组件待整合。**未部署、未迁移数据库/账号、未修改私人 V1.1 分支**。

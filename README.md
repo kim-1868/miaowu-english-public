@@ -4,7 +4,7 @@
 
 ## 本次已落地
 
-- 当前交付包有 **28 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 4 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
+- 当前交付包有 **29 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 5 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
 - 网站公告及历史记录、手机桌面安装教程保留了原 V1.1 公共端 JS，并且通过了合成数据下的交互测试。
 - 新建 `showcase/index.html`：使用真实组件 + 合成公告展示效果，绝不访问生产 D1、用户订单、小说或词库。
 - `npm run check` 包含精确文件白名单、常见密钥特征与 JS 语法检查，`npm test` 用 Node 22 内置测试验证基本行为。
@@ -109,3 +109,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-05：独立非阻塞阅读词卡
 
 新增 `public/word-card-view.js`：以 `MiaowuWordCardView.create({document,onSpeak,onBookmark,onMastery,onNavigate,onClose}).show({wordId,word,position,total,loading,missing,bookmarked,mastered,anchor})` 纯 DOM 渲染词卡；在手机用不遮挡正文的底部面板。所有学习状态只通过回调向**私人业务**提出意图，不进行词义去重、HTTP、持久化或音频播放。见 [合成词卡页面](showcase/word-card-contract.html)。**尚未替换私人站词卡逻辑**。
+
+## PUBLIC-11-05 词卡组件验收快照（2026-11-08）
+
+[公共 PR #23](https://github.com/kim-1868/miaowu-english-public/pull/23) 已完成合并，公共 Node、Chromium 合成测试与 `main` 构建通过，交付提交 `8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`（29 文件，SHA-256 Artifact ID `13581784780`）。对照私人 V1.1 固定基线：20 相同、4 已知差异、5 个纯公共组件尚未在私人站安装。纯前端传递收藏/掌握意图不等于真实业务保存成功；上线还需按最新私人 app.js 消除旧监听、接入私人词义身份/掌握状态并完整 QA。

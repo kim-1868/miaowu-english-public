@@ -172,3 +172,10 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 18. PUBLIC-11-05 非阻塞词卡纯展示层（2026-11-08）
 
 公共独立 `word-card-view.js` 提取旧词卡视图的音标/例句/常用搭配/切换/收藏与掌握按钮 DOM。实际词义 ID、同一义项跨书合并、会员权益、学习持久化由私人服务端决定。公共 Node 注入/回调/加载与移动 Chromium 合成回归后，打包为 29 文件 SHA-256 交付包。私人 V1.1 原词卡仍运行且未被修改，最终整合需先移除原动态 HTML 和重复监听。
+
+
+## 19. PUBLIC-11-05 非阻塞词卡纯 UI 交付完成（2026-11-08）
+
+[PR #23](https://github.com/kim-1868/miaowu-english-public/pull/23) 已 Squash 合并，公共源码交付提交 `8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`。公共 [Node 42393095483](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095483)、[Chromium 42393095543](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393095543)、[main 42393184164](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393184164) 全部通过；29 文件 Artifact ID `13581784780`。私人 V1.1 固定基线对照为 20 一致/4 个待审差异/5 个公共新组件。
+
+下一步优先建立**五个新公共组件的私人集成前差异清单与接口接线规则**，但在用户并行修改网站期间不直接改私人 `app.js`，不能重复绑定旧代码；随后由私人候选 Gate 一次性验证注册、授权、阅读、词义身份/去重、收藏/掌握/复习和数据库持久化。公共成功不等于网站已上线。
