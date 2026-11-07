@@ -9,7 +9,7 @@ import { APPROVED_PATHS } from "../scripts/audit-public.mjs";
 
 test("public bundle has precisely 28 audited UI files and no private assets", () => {
   assert.equal(PUBLIC_UI_PATHS.length, 28);
-  assert.equal(new Set(PUBLIC_UI_PATHS).size, 27);
+  assert.equal(new Set(PUBLIC_UI_PATHS).size, PUBLIC_UI_PATHS.length);
   for (const path of PUBLIC_UI_PATHS) {
     assert.ok(APPROVED_PATHS.has(path), "Unapproved asset: " + path);
     assert.match(path, /^public\/[a-z0-9/.-]+$/);
