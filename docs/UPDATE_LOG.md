@@ -4,13 +4,14 @@
 
 ## 更新记录
 
-### 2026-11-08 · PUBLIC-BUILD-01｜公共完整 Build / SHA-256 复验与审核后 Release（待 PR 验证）
+### 2026-11-08 · PUBLIC-BUILD-01｜公共完整 Build / SHA-256 复验与审核后 Release（已合并）
 
 - 公共 Actions 继续承担前端代码白名单审计、合成 Node 测试、29 文件 UI 构建及 Chromium 浏览器测试；公共 main 在上传短期 Actions Artifact 前新增完整 SHA/文件安全独立核验。
 - 新增 scripts/verify-public-ui-release.mjs 和 tests/public-release-bundle.test.mjs：拒绝改动文件、额外文件、符号链接、错误源 SHA、伪造 manifest 等。
 - 新增仅 workflow_dispatch 手动触发的 .github/workflows/public-ui-release.yml：必须明确确认且输入完整审核过的 main SHA，重新测试后用独立的公共 contents: write job 创建 ZIP + manifest + SHA256SUMS Release。PR、push 绝不自动创建 Release。
 - 不把私人仓库源码、小说、词库、用户/订单、数据库、Cloudflare 私钥交给公共运行器；私人完整业务测试和真正部署仍在私人。**尚未实际创建 Release / 未部署网站。**
 - 执行与安全边界见 docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md。
+- **验收完成**：[公共 PR #27](https://github.com/kim-1868/miaowu-english-public/pull/27) 已 Squash 合并，核心提交 `bd3391e78f1b93664a87a7eae740a29b2617eb5f`。[PR Actions #42399785161](https://github.com/kim-1868/miaowu-english-public/actions/runs/42399785161) 和 [main Actions #42399902636](https://github.com/kim-1868/miaowu-english-public/actions/runs/42399902636) 均成功；main 的 29 文件构建与二次校验已通过，并上传 Artifact `wordletter-public-ui-bd3391e78f1b93664a87a7eae740a29b2617eb5f`（ID `13584619130`）。公开 Release 工作流**已安装但未手动触发**；GitHub Releases 仍为空，不可称已发布 Release。无需私人 Actions、未部署。
 
 
 ### 2026-11-08 · PUBLIC-SF-01｜小说工厂批次合成合同测试（候选）
