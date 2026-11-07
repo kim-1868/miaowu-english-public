@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>妙屋英语 · 跨设备样式验证（合成数据）</title>
+<link rel="stylesheet" href="./responsive-contract.css">
+<link rel="stylesheet" href="../public/v11-bookshelf.css">
+<link rel="stylesheet" href="../public/v11-reader.css">
+<link rel="stylesheet" href="../public/v11-wordbook.css">
+<link rel="stylesheet" href="../public/flashcards.css">
+<link rel="stylesheet" href="../public/v11-responsive.css">
+</head>
+<body>
+<header class="contract-header">
+ <div><strong>妙屋英语</strong><span>WordLetter · PUBLIC-03</span></div>
+ <div class="contract-toolbar">
+  <a href="./index.html">返回组件演示</a>
+  <button id="contractTheme" type="button" aria-pressed="false">切换夜间</button>
+ </div>
+</header>
+<main class="contract-main">
+ <p class="contract-note">仅供公共前端样式检查：所有书名、进度及词例均为虚构数据，无账号、真实词库和后台连接。</p>
+ <section id="view-library" class="contract-section" aria-labelledby="contractBooksTitle">
+  <h1 id="contractBooksTitle">合成书架</h1>
+  <div class="home-shelf-layout">
+   <div class="book-grid">
+    <article class="cloud-book-item">
+     <div class="contract-cover contract-cover-one" aria-hidden="true"><span>LETTER</span><b>✉</b></div>
+     <div class="book-info"><div class="line1"><h3>月光邮局</h3></div><p>四级 · 虚构书籍</p><small>学习进度：演示 10%</small>
+      <div class="book-actions"><button class="primary" type="button">继续阅读</button><button class="cloud-bookmark-button" type="button">加入书架</button></div>
+     </div>
+    </article>
+    <article class="cloud-book-item">
+     <div class="contract-cover contract-cover-two" aria-hidden="true"><span>FOG</span><b>☾</b></div>
+     <div class="book-info"><div class="line1"><h3>雾港来信</h3></div><p>六级 · 虚构书籍</p><small>学习进度：演示 25%</small>
+      <div class="book-actions"><button class="primary" type="button">继续阅读</button><button class="cloud-bookmark-button" type="button">加入书架</button></div>
+     </div>
+    </article>
+    <article class="cloud-book-item">
+     <div class="contract-cover contract-cover-three" aria-hidden="true"><span>LAMP</span><b>✦</b></div>
+     <div class="book-info"><div class="line1"><h3>山间灯火</h3></div><p>考研 · 虚构书籍</p><small>学习进度：演示 0%</small>
+      <div class="book-actions"><button class="primary" type="button">开始阅读</button><button class="cloud-bookmark-button" type="button">加入书架</button></div>
+     </div>
+    </article>
+   </div>
+  </div>
+ </section>
+ <section id="view-reader" class="contract-section" aria-labelledby="contractReaderTitle">
+  <h2 id="contractReaderTitle">字号、工具栏与合成正文</h2>
+  <div class="read-top"><button type="button">返回书架</button><span class="contract-quiet">样式模拟，不保存阅读进度</span></div>
+  <div class="tool-row"><button type="button">朗读</button><button type="button">目录</button><button type="button">词汇</button></div>
+  <div class="v11-font-slider">
+    <label for="contractFont">字体大小</label>
+    <input type="range" id="contractFont" min="12" max="24" value="16" step="1" />
+    <output id="contractFontValue" for="contractFont">16px</output>
+  </div>
+  <article class="contract-reader-paper"><h3>第一幕 · 虚构示例</h3>
+   <p id="contractReaderText">清晨，街角的灯慢慢熄灭，一封 <strong lang="en">letter</strong> 静静放在桌上。这里的内容只用于验证手机阅读字号、中文和英文之间的排版。</p>
+  </article>
+ </section>
+ <section id="view-words" class="contract-section" aria-labelledby="contractVocabTitle">
+  <h2 id="contractVocabTitle">词卡与操作区</h2>
+  <article class="vocab-card">
+    <strong lang="en">imagination</strong><p class="vocab-example">一段较长的词义解释用于验证换行：想象力；想象的能力。</p>
+    <div class="card-tools"><button type="button">听读发音</button><button type="button">记住了</button><button type="button">再记一次</button></div>
+  </article>
+  <div id="wordPop" class="contract-popup">
+    <div class="v11-word-pron"><span class="v11-pron-ipa">/ɪˌmædʒɪˈneɪʃən/</span><span class="v11-pron-part">n.</span></div>
+    <div class="v11-example-heading"><strong>示例词义</strong><button type="button">播放例句</button></div>
+    <div class="word-extra"><p>这是一段长度较长的中文演示释义，仅用于观察词卡是否超出手机屏幕。</p></div>
+  </div>
+ </section>
+ <section class="contract-section" aria-labelledby="contractFlashTitle">
+  <h2 id="contractFlashTitle">快速刷词卡片</h2>
+  <div class="flashcard-trainer"><div class="flash-session"><div class="flash-paper">
+   <strong class="flash-headword" lang="en">imagination</strong><span class="flash-phonetic">/ɪˌmædʒɪˈneɪʃən/</span>
+   <p class="flash-mystery">合成卡片，不记录学习状态</p>
+  </div><div class="flash-finish-actions"><button type="button">继续下一张</button><button type="button">退出演示</button></div></div></div>
+ </section>
+</main>
+<footer class="contract-footer">公共仓库静态演示，不代表任何正式上线的功能。</footer>
+<script src="./responsive-contract.js"></script>
+</body>
+</html>
