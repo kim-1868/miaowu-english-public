@@ -4,6 +4,15 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-05｜公共仓库 CI 重复触发优化
+
+- **位置**：公共仓库 [Issue #7](https://github.com/kim-1868/miaowu-english-public/issues/7)，独立开发分支 `feature/public05-ci-trigger-dedupe-20261107`。
+- **更改**：公共 `.github/workflows/public-guard.yml` 将 push 检查限定为 `main`，feature 分支默认只在创建/更新 PR 时运行，并提供 `workflow_dispatch` 手工检查入口。过时任务仍自动取消；继续使用只读权限、Node 22、白名单、离线检查，无生产部署。
+- **测试**：新增 `tests/workflow-triggers.test.mjs` 校验触发条件、只读权限、取消过时任务和离线安全门禁；文件清单与公共更新日志同步维护。
+- **私人影响**：无；私人 GitHub Actions 2,000 分钟上限**不会**因本优化消失。本修改仅降低公共仓库重复检查和等待。
+- **验证**：待 PR CI 完成后追加最终 SHA 与结果；没有发布真实网站。
+
+
 ### 2026-11-07 · PUBLIC-03｜跨设备书架、阅读、词卡样式与测试
 
 - **位置**：公共开发分支 `feature/public03-responsive-reader-wordcard-20261107`，关联 [Issue #3](https://github.com/kim-1868/miaowu-english-public/issues/3)。

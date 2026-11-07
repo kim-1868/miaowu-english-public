@@ -114,3 +114,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 9. PUBLIC-03 第一轮公共优化（2026-11-07）
 
 已在独立公共分支完成 320/375/390/430px CSS 断点保护、可点击区域增强、字号滑块 12–24px 范围合成演示、夜间词卡文字对比。新增 `showcase/responsive-contract.html` 加载真实公共响应式 CSS 并使用虚构数据，`tests/responsive-layout.test.mjs` 已通过 GitHub Actions。**尚需实际浏览器截图/触控验收与最新私人站点代码差异整合，不触发生产或预览发布。** 详细变更见 [公共更新日志](UPDATE_LOG.md)。
+
+
+## 10. PUBLIC-05 公共 CI 触发去重（2026-11-07）
+
+公共 `.github/workflows/public-guard.yml` 改成 feature 分支主要通过 Pull Request 执行检查，push 仅对 `main` 触发；另保留 `workflow_dispatch` 手动检查入口，不改只读/无密钥安全门禁。任务记录见 [Issue #7](https://github.com/kim-1868/miaowu-english-public/issues/7) 与 [更新日志](UPDATE_LOG.md)。不影响私人仓库配额；私人 Actions 仍需独立优化。

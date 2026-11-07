@@ -3,13 +3,15 @@ name: Public repo lightweight guard
 
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: public-guard-${{ github.workflow }}-${{ github.ref }}
+  group: public-guard-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
