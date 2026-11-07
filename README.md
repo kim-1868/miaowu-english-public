@@ -133,3 +133,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## 小说工厂工作台 W1（独立合成演示）
 
 执行 `npm run dev` 后打开 `/showcase/story-workbench.html`：可创建虚构批次、模拟逐章推进、暂停/失败恢复、审核及导出不可上架的状态摘要。详见 [W1 工作台验收与 W2 接口设计](docs/STORY_WORKBENCH_W1_HANDOFF_20261108.md)。此演示不调用真实 AI、D1 或用户权限；不构成 V1.1 正式网站改动。
+
+## PUBLIC-DEV-CORE-WAVE1：把小说导入/混排审校/复习计算的公开部分接入公共测试（2026-11-08）
+
+公共仓库已新增从私人 V1.1 固定 SHA 审查后复制的 **3 个无 D1、无网络的纯逻辑模块**：`public/novel-file-parser.js`、`src/editorial-code-switch-lint.js`、`src/spaced-review.js`。测试只使用虚构故事、合成单词，并通过 Git blob 校验来源一致；公共 `npm run check` / `npm test` 覆盖，不需要私人 Actions。详见 [第一批公开代码迁移与隔离规则](docs/PUBLIC_DEV_CORE_WAVE1_20261108.md)。原私人仓库和线上代码没有改动；公共 UI Release 仍固定 29 个资源，不会将私人内容打包公开。

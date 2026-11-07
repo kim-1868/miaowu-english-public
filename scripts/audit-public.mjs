@@ -66,6 +66,7 @@ export const APPROVED_PATHS = new Set([
   "public/shelf-card.js",
   "public/reader-panels.js",
   "public/word-card-view.js",
+  "public/novel-file-parser.js",
   "scripts/annotation-contract.mjs",
   "scripts/story-batch-contract.mjs",
   "showcase/story-workbench.html",
@@ -82,11 +83,14 @@ export const APPROVED_PATHS = new Set([
   "scripts/serve.mjs",
   "scripts/build-public-ui.mjs",
   "scripts/verify-public-ui-release.mjs",
+  "src/editorial-code-switch-lint.js",
+  "src/spaced-review.js",
   "scripts/plan-public-ui-handoff.mjs",
   "tests/public-handoff.test.mjs",
   "scripts/verify-public-ui-browser.mjs",
   "tests/public-bundle.test.mjs",
   "tests/public-release-bundle.test.mjs",
+  "tests/public-dev-core-wave1.test.mjs",
   "tests/public-source-contract.test.mjs",
   "tests/public-reader-controls.test.mjs",
   "tests/public-shelf-pagination.test.mjs",
@@ -102,7 +106,8 @@ export const APPROVED_PATHS = new Set([
   "docs/UPDATE_LOG.md",
   "docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md",
   "docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md",
-  "docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md"
+  "docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md",
+  "docs/PUBLIC_DEV_CORE_WAVE1_20261108.md"
 ]);
 
 export function allowedPath(path) {
