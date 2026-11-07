@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 export const APPROVED_PATHS = new Set([
   ".github/workflows/public-guard.yml",
   ".github/workflows/public-browser-qa.yml",
+  ".github/workflows/public-ui-release.yml",
   ".gitignore",
   "README.md",
   "package.json",
@@ -73,10 +74,12 @@ export const APPROVED_PATHS = new Set([
   "scripts/audit-public.mjs",
   "scripts/serve.mjs",
   "scripts/build-public-ui.mjs",
+  "scripts/verify-public-ui-release.mjs",
   "scripts/plan-public-ui-handoff.mjs",
   "tests/public-handoff.test.mjs",
   "scripts/verify-public-ui-browser.mjs",
   "tests/public-bundle.test.mjs",
+  "tests/public-release-bundle.test.mjs",
   "tests/public-source-contract.test.mjs",
   "tests/public-reader-controls.test.mjs",
   "tests/public-shelf-pagination.test.mjs",
@@ -91,7 +94,8 @@ export const APPROVED_PATHS = new Set([
   "docs/PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md",
   "docs/UPDATE_LOG.md",
   "docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md",
-  "docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md"
+  "docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md",
+  "docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md"
 ]);
 
 export function allowedPath(path) {

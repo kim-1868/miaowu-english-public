@@ -50,7 +50,7 @@ npm run dev
 
 ## 公共更新构建与交付（PUBLIC-06）
 
-公开前端的 26 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
+公开前端的 29 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
 
 **注意**：构建产物不是完整网站，也不自动推送至私人仓库或生产环境。私人发布流程须对固定 SHA 做逐文件审阅与校验，并在私人环境验证业务/权益和上线门禁；严禁把私人资料复制到公共仓库。
 
@@ -125,3 +125,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## 小说工厂公共合成批次回归（2026-11-08）
 
 新增 [批次测试公共/私人边界及检查项目](docs/PUBLIC_STORY_FACTORY_BATCH_TEST_POLICY_20261108.md)。公共 Node CI 只验证虚构书籍任务的章节数量、重复续写、义项新词预留碰撞、标注引用与密度算术；**真实六本小说正文、考试词库、音标/例句、跨书学习记录与上架权限留在私人受控流程**。公共测试成功不代表内容完成或可上架。
+
+## PUBLIC-BUILD-01 公共仓库承担 Build / Node / Chromium / 手动 Release
+
+现在公共 main 的自动工作流除了 29 项公开文件构建外，新增独立 SHA-256 交付验证。另提供需完整 source SHA 和人工确认的 GitHub Release 手动工作流；安全审查成功后仅可发布公开 UI zip、manifest 和 SHA256SUMS，不携带私人业务代码。详见 [公共 Build 与 Release 流程及私有边界](docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md)。**本流程不会自动创建 Release、自动覆盖私人 app.js 或部署 Cloudflare。**
