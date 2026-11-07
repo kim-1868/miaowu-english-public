@@ -38,6 +38,8 @@ export const APPROVED_PATHS = new Set([
   "public/live-reader.css",
   "public/onboarding.css",
   "public/claim.css",
+  "scripts/annotation-contract.mjs",
+  "tests/annotation-contract.test.mjs",
   "scripts/audit-public.mjs",
   "scripts/serve.mjs",
   "scripts/build-public-ui.mjs",
