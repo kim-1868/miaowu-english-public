@@ -147,3 +147,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 - 第二批书架分页 [PR #20](https://github.com/kim-1868/miaowu-english-public/pull/20) 已合并，Node [42387700757](https://github.com/kim-1868/miaowu-english-public/actions/runs/42387700757)、Chromium [42387700804](https://github.com/kim-1868/miaowu-english-public/actions/runs/42387700804)、main [42387778840](https://github.com/kim-1868/miaowu-english-public/actions/runs/42387778840) 成功，交付白名单 25→26。
 - 最新公共合并 SHA `bc3de0fe82c275204d26c5a2ffa1f4800e7ac6a3`；对应 26 文件 Artifact ID `13580371015`。
 - 后续纯前端可以继续按组件拆：书架卡片、阅读工具栏、词卡翻转/动效；真实 API/权限、词义身份和学习记录仍私人。**未对私人活动分支、预览站、正式站或 D1 改动。**
+
+
+## 14. PUBLIC-11-03 公开书架卡片展示组件（2026-11-08）
+
+在公共分支 `feature/public11-shelf-card-20261108` 新建纯 DOM 书架卡片渲染器，以用户可见样式作为合同，只接收调用方传入的标签、封面/权益显示状态、进度占位和按钮回调。公共 Chromium 用三本虚构书籍验证 320/390/1440px。私有 `app.js`、查询、付费墙、保存记录、Cloudflare 均未更动，需私人候选整合时消除旧逻辑重复后再上线。

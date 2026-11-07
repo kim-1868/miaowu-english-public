@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-08 · PUBLIC-11-03｜书架卡片纯展示组件（待验收）
+
+- **来源**：审阅私人 V1.1 提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 中的 `public/app.js` 书架卡片展示区域（不迁移 `loadCloudBookCards` 中的接口查询、授权或状态持久化）。
+- **新增**：公共 `public/shelf-card.js`，使用 `document.createElement` 和 `textContent` 创建书籍封面、合法标签、会员显示文案、进度占位和收藏/阅读按钮，回调完全由私有业务方注入。非法封面 URL、标签颜色过滤；收藏不进行乐观写入。
+- **验证**：新增 `tests/public-shelf-card.test.mjs` 覆盖 HTML 注入、非法封面、回调/收藏状态、权益显示、长度边界；`showcase/shelf-card-contract.html/css/js` 为虚构书籍；公共 Chromium 增加 320/390/1440px 真实交互检查。
+- **交付包**：精确白名单 26→27 个文件，继续采用 SHA-256 和只读差异预检；**不触碰私人运行站、D1 或 Cloudflare，不导入真实书籍数据**。对应 PUBLIC-11 [Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。
+
+
 ### 2026-11-07 · PUBLIC-11-02｜从私人 app.js 拆分纯 DOM 书架分页组件（已合并）
 
 - **源逻辑**：私人 V1.1 `public/app.js` `renderShelfPagination`，参考固定 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`；只移出分页渲染，不移出书籍查询、用户书架、权限或数据库。

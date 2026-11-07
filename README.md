@@ -89,3 +89,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11 当前交付快照（2026-11-07）
 
 [公共 PR #19](https://github.com/kim-1868/miaowu-english-public/pull/19) 阅读控制与 [公共 PR #20](https://github.com/kim-1868/miaowu-english-public/pull/20) 书架分页均已完成 Node + Chromium 验收。当前 SHA-256 交付包是 `wordletter-public-ui-bc3de0fe82c275204d26c5a2ffa1f4800e7ac6a3`，包含 26 个文件（Artifact ID `13580371015`）。与私人 V1.1 固定参考版本对比：20 个 Git blob SHA 相同、4 个公共改动需合并、2 个新增公共组件等待私人集成。**没有修改预览或正式网站。**
+
+## PUBLIC-11-03：书架卡片纯前端渲染
+
+新增公共 `public/shelf-card.js`：`MiaowuShelfCard.create({document}).render({book,index,category,entitled,hasProgress,bookmarked,coverUrl,onOpen,onBookmarkToggle})`。只负责 DOM 和回调，不读取真实付费章节、运营数据或用户书架；展示当前客户端的封面、半透明标签、进度占位、会员提示和收藏按钮。见 [合成书架卡片演示](showcase/shelf-card-contract.html)。**当前私人 app.js 仍独立运行，此模块不是已上线更新。**

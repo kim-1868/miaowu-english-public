@@ -51,7 +51,7 @@ export function verifyPublicBundle(bundleDir, expectedSourceSha) {
   const expected = [...PUBLIC_UI_PATHS].sort();
   const actual = manifest.files.map(f => f?.path).sort();
   if (actual.length !== expected.length || actual.some((p,i) => p !== expected[i])) {
-    throw Error("Delivery must contain exactly the 26 approved public UI paths");
+    throw Error("Delivery must contain exactly the 27 approved public UI paths");
   }
   const results=[];
   for (const f of manifest.files) {
