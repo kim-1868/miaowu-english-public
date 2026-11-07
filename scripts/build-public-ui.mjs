@@ -2,6 +2,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, rmSync, writeFileSync, lstatSync } from "node:fs";
 import { dirname, join, resolve, sep } from "node:path";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { APPROVED_PATHS, suspiciousContent } from "./audit-public.mjs";
 
@@ -27,7 +28,7 @@ export function packagePublicUi({ outputDir = join(ROOT, "dist-public-ui"), sour
   const distinct = new Set(PUBLIC_UI_PATHS);
   if (distinct.size !== PUBLIC_UI_PATHS.length || distinct.size !== 18) throw Error("Unexpected UI delivery manifest");
   const target = resolve(outputDir);
-  if (target === ROOT || !target.startsWith(ROOT + sep) && target === resolve(ROOT, "dist-public-ui")) {
+  if (target !== resolve(ROOT, "dist-public-ui") && !target.startsWith(resolve(tmpdir()) + sep)) {
     throw Error("Unsafe output location");
   }
   const entries = [];

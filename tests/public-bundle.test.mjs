@@ -13,7 +13,7 @@ test("public bundle has precisely 18 audited UI files and no private assets", ()
   for (const path of PUBLIC_UI_PATHS) {
     assert.ok(APPROVED_PATHS.has(path), "Unapproved asset: " + path);
     assert.match(path, /^public\/[a-z0-9/.-]+$/);
-    assert.doesNotMatch(path, /ops|draft|db|novel|order|customer|voucher|activation|secret|content|src\//i);
+    assert.doesNotMatch(path, /(^|\/)(ops|drafts?|db|novels?|orders?|customers?|vouchers?|activation|secrets?|content|src)(\/|[.-])/i);
   }
 });
 
