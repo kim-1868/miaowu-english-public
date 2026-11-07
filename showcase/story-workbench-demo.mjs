@@ -1,6 +1,6 @@
 import {createWorkbench,GRADES,STATES} from "./story-workbench-model.mjs";
 // Interactive W1 showcase. Buttons simulate state transitions only.
-// No fetch, localStorage, model, D1, Worker, private novel or upload.
+// No network traffic, persisted browser data, remote model runs or publishing.
 const engine=createWorkbench();
 const $=id=>document.getElementById(id);
 const list=$("taskList"),detail=$("taskDetail"),history=$("historyList"),notice=$("toast");
