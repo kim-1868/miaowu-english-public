@@ -113,3 +113,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-05 词卡组件验收快照（2026-11-08）
 
 [公共 PR #23](https://github.com/kim-1868/miaowu-english-public/pull/23) 已完成合并，公共 Node、Chromium 合成测试与 `main` 构建通过，交付提交 `8f1cbdf6e55b99bdf30eaf93bbeb1d311da0e2a8`（29 文件，SHA-256 Artifact ID `13581784780`）。对照私人 V1.1 固定基线：20 相同、4 已知差异、5 个纯公共组件尚未在私人站安装。纯前端传递收藏/掌握意图不等于真实业务保存成功；上线还需按最新私人 app.js 消除旧监听、接入私人词义身份/掌握状态并完整 QA。
+
+## PUBLIC-11 五组件接线准备（仍未进入私人站）
+
+公开仓库新增 [五组件安全整合与私人门禁清单](docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md)；配套 Node 合同测试保证五个模块只是**显式创建的 UI 适配器**，不在公共 `index.html` 里自动叠加加载，从而避免覆盖你同时维护的私人 `app.js`。
