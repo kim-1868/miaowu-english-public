@@ -67,3 +67,9 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 - Public delivery manifest grows from 18 to 24 exact allowlisted files. Private app/UI releases must compare complete source SHA and file hashes before staged integration, never silently replace concurrent edits.
 
 **PUBLIC-10 实际核验记录**：公开 PR #17 合并 SHA `0105b212b226a9898e7696cd314b999785826278`；24 文件公共 Actions Artifact 已核实（ID 13579168592）；对应私人 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 中 20 文件 Git blob 一致，4 文件有公共优化的预期差异，零缺失。公共页面仍依赖私人后端及 `app.js`，不可独立上线。完整公共/私人开发分界参见 [公共前端所有权](PUBLIC_FRONTEND_OWNERSHIP_20261107.md)。
+
+
+## PUBLIC-11：新创建的可复用公共展示模块
+
+- `public/reader-preferences.js`：从私人 UI 源逻辑中独立实现阅读字号/夜间切换（已通过公共 Chromium）；对应 PR #19，源参考 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`。
+- `public/shelf-pagination.js`：从私人书架分页视图中抽出纯 DOM/UI 与事件回调，**不包含任何实际数据查询、用户权限判断或上传**；对应 PUBLIC-11-02。二者都是**公共新组件**，并不是已接入私人运行网站；私人原 `app.js` 仍为生产真实功能入口。

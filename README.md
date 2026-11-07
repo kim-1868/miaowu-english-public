@@ -81,3 +81,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11 · 阅读器展示逻辑逐步拆分（第一批）
 
 从私人 `public/app.js` 已审阅的日夜模式和字号展示规则中抽出 `public/reader-preferences.js`，提供 `MiaowuReaderPreferences.create({document,storage}).mount()`。它只处理 DOM、12–24px/默认 18px 以及浏览器本地显示偏好，**不包含登录、付费判断、学习记录或 D1**。详见 [合成阅读控制演示](showcase/reader-controls-contract.html)；本组件**尚未加载到私人运行网站**，需要私人 `app.js` 后续受控拆分并确认双重监听不发生。
+
+## PUBLIC-11 第二批：书架分页纯 UI 组件
+
+从原 `app.js` 拆分 `public/shelf-pagination.js`，用 `MiaowuShelfPagination.create({document}).render({container,meta,currentPage,onPageChange})` 构建无后端权限的分页导航。按原文案提供上一页/下一页、页码省略号与 aria-current 语义。 [查看纯合成书架分页演示](showcase/shelf-pagination-contract.html)。**本次未接入私人网站**：真实 `/api/books`、分类权限与滚动行为依然由私人端负责。
