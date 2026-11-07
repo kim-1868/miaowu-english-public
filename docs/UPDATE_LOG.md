@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-09｜公共前端交付的只读整合预检（待验收）
+
+- **目标**：公开工具对公共 UI 的 18 文件 SHA-256 交付包做离线完整性验证，并和本地私人代码 checkout 生成相同/待审阅/缺失的文件差异清单，杜绝直接覆盖正在开发的网站。
+- **改动**：新增 `scripts/plan-public-ui-handoff.mjs`、`tests/public-handoff.test.mjs`；扩展文件白名单、Node 检查、README 使用说明。
+- **安全范围**：不复制、上传、替换私人代码，不连接网络/D1/Cloudflare；源公共完整提交 SHA 需独立人工选择，不能把 manifest 字段当可信签名。
+- **测试与发布状态**：等待 PR 与公共 Actions 验证；尚未整合私人站，未发布预览或正式站。
+
+
 ### 2026-11-07 · PUBLIC-08｜公开 UI 的 Chromium 多屏宽验证（已合并）
 
 - 在公共标准 GitHub Actions 使用支持 Playwright 1.56.1 的 Ubuntu 24.04，针对完全虚构的书架/阅读器/词卡做真实 Chromium 布局检查，不使用私人数据库或 Cloudflare 密钥。

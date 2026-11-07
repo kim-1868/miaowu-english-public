@@ -57,3 +57,13 @@ npm run dev
 ## 公开界面真实浏览器 QA（PUBLIC-08）
 
 对公共 UI 的 PR，公共 `Public synthetic UI Chromium screen matrix` 工作流使用 Playwright 在 `ubuntu-24.04` 检查多种手机/电脑宽度、夜间色彩、按钮触控和阅读字号，保存 **仅合成数据** 的截图供人工检查。测试脚本 `scripts/verify-public-ui-browser.mjs` 只访问本地预览；不代表私人登录、付费权益、D1 或真实设备已验收。
+
+## 公共前端交付与私人版本差异预检（PUBLIC-09）
+
+公共仓库现提供**只读**离线工具 `scripts/plan-public-ui-handoff.mjs`。由授权人在本地取得公共 Actions 的 `wordletter-public-ui-<SHA>` 交付包、已审核的公共完整 SHA、当前私人代码 checkout 后执行：
+
+```bash
+node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/to/private-checkout <40位已审核的公共完整SHA>
+```
+
+它检查 manifest、18 个精确白名单文件、字节大小、逐文件 SHA-256 与额外文件/符号链接，并输出 `identical` / `review_required` / `missing`；**绝不写私人文件或自动部署**。需要人工比较标记差异的文件，再走私人 Gate 和受控预览。输入的完整 SHA 需要从已审阅 PR/Actions 独立核对，**manifest 自述的 SHA 不构成签名或可信发布证明**。
