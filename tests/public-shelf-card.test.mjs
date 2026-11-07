@@ -115,14 +115,14 @@ test("valid same-origin cover image is rendered without external URI support",()
  assert.equal(find(card,classNamed("illustration")),null);
 });
 
-test("invalid records are rejected and optional fields stay bounded",()=>{
+test("invalid records are rejected and user-defined cover tags have no arbitrary truncation",()=>{
  const {api}=fixture();
  assert.throws(()=>api.render({}),/INVALID_BOOK/);
  assert.throws(()=>api.render({book:{id:"",title:"x"}}),/INVALID_BOOK/);
  assert.throws(()=>api.render({book:{id:"x",title:4}}),/INVALID_BOOK/);
  const longTags=Array.from({length:300},(_,i)=>({label:"tag"+i,color:"#ffffff"}));
  const card=api.render({book:{id:"x",title:"安全",cover_tags:longTags},index:Infinity});
- assert.equal(all(card,classNamed("cover-custom-tag")).length,8);
+ assert.equal(all(card,classNamed("cover-custom-tag")).length,300);
  assert.equal(find(card,classNamed("eyebrow")).textContent,"01");
 });
 
