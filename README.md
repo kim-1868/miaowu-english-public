@@ -77,3 +77,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## 公共优先开发：后续统一执行规范
 
 公开页面、浏览器 UI、日夜样式、通用学习交互等以后**默认在本公共仓库先开发、测试和打包**；私人仓库继续保护用户/订单/激活、小说词库、真实业务权限及发布操作。请按照 [公共前端所有权与双仓库交接规则](docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md) 选择代码位置，避免同时开发时互相覆盖。
+
+## PUBLIC-11 · 阅读器展示逻辑逐步拆分（第一批）
+
+从私人 `public/app.js` 已审阅的日夜模式和字号展示规则中抽出 `public/reader-preferences.js`，提供 `MiaowuReaderPreferences.create({document,storage}).mount()`。它只处理 DOM、12–24px/默认 18px 以及浏览器本地显示偏好，**不包含登录、付费判断、学习记录或 D1**。详见 [合成阅读控制演示](showcase/reader-controls-contract.html)；本组件**尚未加载到私人运行网站**，需要私人 `app.js` 后续受控拆分并确认双重监听不发生。

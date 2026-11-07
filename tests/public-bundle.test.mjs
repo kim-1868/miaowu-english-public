@@ -7,9 +7,9 @@ import { tmpdir } from "node:os";
 import { PUBLIC_UI_PATHS, packagePublicUi } from "../scripts/build-public-ui.mjs";
 import { APPROVED_PATHS } from "../scripts/audit-public.mjs";
 
-test("public bundle has precisely 24 audited UI files and no private assets", () => {
-  assert.equal(PUBLIC_UI_PATHS.length, 24);
-  assert.equal(new Set(PUBLIC_UI_PATHS).size, 24);
+test("public bundle has precisely 25 audited UI files and no private assets", () => {
+  assert.equal(PUBLIC_UI_PATHS.length, 25);
+  assert.equal(new Set(PUBLIC_UI_PATHS).size, 25);
   for (const path of PUBLIC_UI_PATHS) {
     assert.ok(APPROVED_PATHS.has(path), "Unapproved asset: " + path);
     assert.match(path, /^public\/[a-z0-9/.-]+$/);
@@ -24,7 +24,7 @@ test("synthetic bundle includes SHA-256 manifest and can be independently valida
     const result = packagePublicUi({ outputDir, sourceSha: SHA });
     assert.equal(result.manifest.source_commit_sha, SHA);
     assert.equal(result.manifest.release_scope, "public-ui-only");
-    assert.equal(result.manifest.files.length, 24);
+    assert.equal(result.manifest.files.length, 25);
     const disk = JSON.parse(readFileSync(join(outputDir, "manifest.json"), "utf8"));
     assert.deepEqual(disk, result.manifest);
     for (const file of disk.files) {
