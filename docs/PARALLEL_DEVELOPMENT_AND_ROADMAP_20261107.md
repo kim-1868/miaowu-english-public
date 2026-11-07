@@ -119,3 +119,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 10. PUBLIC-05 公共 CI 触发去重（2026-11-07）
 
 公共 `.github/workflows/public-guard.yml` 改成 feature 分支主要通过 Pull Request 执行检查，push 仅对 `main` 触发；另保留 `workflow_dispatch` 手动检查入口，不改只读/无密钥安全门禁。任务记录见 [Issue #7](https://github.com/kim-1868/miaowu-english-public/issues/7) 与 [更新日志](UPDATE_LOG.md)。不影响私人仓库配额；私人 Actions 仍需独立优化。
+
+
+## 11. PUBLIC-10 公共优先的页面和客户端迁移（2026-11-07）
+
+固定源 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，安全复制首页、更新日志页、刷词、章节词汇、剧情回声及新手引导的 **6 个公开文件**，公共交付包扩至 24 项。[PR #17](https://github.com/kim-1868/miaowu-english-public/pull/17) 已合并、CI/Chromium 均通过。此后公开界面的更新直接在公共开发，并按 [代码所有权及交付规则](PUBLIC_FRONTEND_OWNERSHIP_20261107.md) 处理；付费/鉴权/小说/订单及 D1 不迁出私人。发布前仍需整合 4 个差异文件和私人整体验收。

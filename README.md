@@ -73,3 +73,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 新增 `public/index.html`、`public/updates.html`、`public/flashcards.js`、`public/chapter-words.js`、`public/echo-cloud.js`、`public/onboarding.js`，来源固定私人 V1.1 提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，不复制 Git 历史。它们用于公共仓库的 UI 开发、构建和离线接口检查。
 
 **非常重要**：首页仍引用私人环境提供的 `/app.js` 等模块，公共交付包不包含这些文件；完整网站的账号、权限和 D1 后端仍在私人仓库。公共版本是固定快照，不会自动同步用户在私人网站进行的后续修改。进入生产前必须审阅完整提交 SHA、24 文件 SHA-256 清单、公共/私人差异并完成私人权限回归，严禁直接部署此交付包。
+
+## 公共优先开发：后续统一执行规范
+
+公开页面、浏览器 UI、日夜样式、通用学习交互等以后**默认在本公共仓库先开发、测试和打包**；私人仓库继续保护用户/订单/激活、小说词库、真实业务权限及发布操作。请按照 [公共前端所有权与双仓库交接规则](docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md) 选择代码位置，避免同时开发时互相覆盖。

@@ -60,7 +60,8 @@ export const APPROVED_PATHS = new Set([
   "tests/boundary.test.mjs",
   "docs/PUBLIC_MIGRATION_MANIFEST.md",
   "docs/PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md",
-  "docs/UPDATE_LOG.md"
+  "docs/UPDATE_LOG.md",
+  "docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md"
 ]);
 
 export function allowedPath(path) {

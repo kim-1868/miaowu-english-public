@@ -4,12 +4,14 @@
 
 ## 更新记录
 
-### 2026-11-07 · PUBLIC-10｜公开首页、历史公告页与四个学习 UI 模块迁移（待 PR 验收）
+### 2026-11-07 · PUBLIC-10｜公开首页、历史公告页与四个学习 UI 模块迁移（已完成）
 
 - 固定私人开发源版本：`0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，逐项审查并干净复制 `public/index.html`、`public/updates.html`、`public/flashcards.js`、`public/chapter-words.js`、`public/echo-cloud.js`、`public/onboarding.js`。
 - 公开前端交付白名单从 18 扩至 24 项；新增浏览器 UI 语法、HTML 模块引用和权限边界的静态合同检查，沿用 SHA-256 构建交付及只读差异预检。
 - 所有服务器端权限/订单/激活/运营后台/小说/词库仍留私人；公共首页依赖私人 `/app.js`，**不可能仅凭公开包独立上线**。私人活动分支不做代码替换。
-- 关联 [Issue #16](https://github.com/kim-1868/miaowu-english-public/issues/16)，本条待公共 PR/Actions 验收后补写准确版本。
+- 关联 [Issue #16](https://github.com/kim-1868/miaowu-english-public/issues/16) 与 [公共 PR #17](https://github.com/kim-1868/miaowu-english-public/pull/17)，已 Squash 合并至公共 `main`，提交 `0105b212b226a9898e7696cd314b999785826278`。修复旧断言后 [PR Node / 安全检查 #42386170949](https://github.com/kim-1868/miaowu-english-public/actions/runs/42386170949) 与 [Chromium 浏览器合成测试 #42386170973](https://github.com/kim-1868/miaowu-english-public/actions/runs/42386170973) 均成功，[合并后主分支构建 #42386247604](https://github.com/kim-1868/miaowu-english-public/actions/runs/42386247604) 成功并上传 24 文件 SHA-256 Artifact（ID 13579168592）。
+- **同名文件差异**：对照私人最新 V1.1 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，24 项中 20 项 Git blob 完全一致、4 项存在公共专属更新：`public/site-updates.js`、`public/v11-reader.css`、`public/v11-responsive.css`、`public/v11-wordbook.css`，仍未自动整合。
+- **执行规范**：新增 [PUBLIC_FRONTEND_OWNERSHIP_20261107.md](PUBLIC_FRONTEND_OWNERSHIP_20261107.md)，之后公开 UI 默认公共开发、私人敏感业务与最终发布保留私人。
 
 
 ### 2026-11-07 · CI-COST-02｜私人预览测试-only 更新不再重复部署

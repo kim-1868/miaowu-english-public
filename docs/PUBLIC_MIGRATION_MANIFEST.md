@@ -65,3 +65,5 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 - Six new public-facing UI files taken from private V1.1 commit `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`. Source Git blobs were checked before copying; no private git history was imported.
 - These files are public UI **source snapshots**, not a functioning production deployment. In particular, public `index.html` refers to private `/app.js`, user/account D1 authorization and protected APIs, which remain owned by the private repository. Public `onboarding.js` and review UI only invoke server-side authorization; permission decisions are not migrated.
 - Public delivery manifest grows from 18 to 24 exact allowlisted files. Private app/UI releases must compare complete source SHA and file hashes before staged integration, never silently replace concurrent edits.
+
+**PUBLIC-10 实际核验记录**：公开 PR #17 合并 SHA `0105b212b226a9898e7696cd314b999785826278`；24 文件公共 Actions Artifact 已核实（ID 13579168592）；对应私人 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 中 20 文件 Git blob 一致，4 文件有公共优化的预期差异，零缺失。公共页面仍依赖私人后端及 `app.js`，不可独立上线。完整公共/私人开发分界参见 [公共前端所有权](PUBLIC_FRONTEND_OWNERSHIP_20261107.md)。
