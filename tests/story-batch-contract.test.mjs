@@ -37,8 +37,10 @@ test("separate senses of the same headword remain separate",()=>{
 test("repeated chapter number cannot inflate progress after resume",()=>{
  const x=batch();x.books[0].completedChapterNumbers=[1,1,9];
  const r=inspectStoryBatchContract(x);
- assert.equal(r.completedChapters,1);
+ assert.equal(r.completedChapters,3); // one valid chapter in this book, two in the other book
  assert.equal(r.issues.filter(z=>z.code==="INVALID_COMPLETED_CHAPTER_NUMBER").length,2);
+ x.books=[x.books[0]];
+ assert.equal(inspectStoryBatchContract(x).completedChapters,1);
 });
 test("unfinished or unapproved claims cannot be certified in public",()=>{
  const x=batch();x.books[0].publicationEligible=true;x.books[2].published=true;
