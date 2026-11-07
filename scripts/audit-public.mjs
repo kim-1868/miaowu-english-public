@@ -36,9 +36,11 @@ export const APPROVED_PATHS = new Set([
   "scripts/audit-public.mjs",
   "scripts/serve.mjs",
   "tests/public-ui.test.mjs",
+  "tests/announcement-regression.test.mjs",
   "tests/boundary.test.mjs",
   "docs/PUBLIC_MIGRATION_MANIFEST.md",
-  "docs/PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md"
+  "docs/PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md",
+  "docs/UPDATE_LOG.md"
 ]);
 
 export function allowedPath(path) {
