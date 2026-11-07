@@ -4,6 +4,15 @@
 
 ## 更新记录
 
+### 2026-11-08 · PUBLIC-BUILD-01｜公共完整 Build / SHA-256 复验与审核后 Release（待 PR 验证）
+
+- 公共 Actions 继续承担前端代码白名单审计、合成 Node 测试、29 文件 UI 构建及 Chromium 浏览器测试；公共 main 在上传短期 Actions Artifact 前新增完整 SHA/文件安全独立核验。
+- 新增 scripts/verify-public-ui-release.mjs 和 tests/public-release-bundle.test.mjs：拒绝改动文件、额外文件、符号链接、错误源 SHA、伪造 manifest 等。
+- 新增仅 workflow_dispatch 手动触发的 .github/workflows/public-ui-release.yml：必须明确确认且输入完整审核过的 main SHA，重新测试后用独立的公共 contents: write job 创建 ZIP + manifest + SHA256SUMS Release。PR、push 绝不自动创建 Release。
+- 不把私人仓库源码、小说、词库、用户/订单、数据库、Cloudflare 私钥交给公共运行器；私人完整业务测试和真正部署仍在私人。**尚未实际创建 Release / 未部署网站。**
+- 执行与安全边界见 docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md。
+
+
 ### 2026-11-08 · PUBLIC-SF-01｜小说工厂批次合成合同测试（候选）
 
 - **归属**：新增 `scripts/story-batch-contract.mjs` 与 `tests/story-batch-contract.test.mjs`，全部为虚构样本；扩充公共文件白名单、语法检查与边界政策文档。用于新词预留、跨等级隔离、重复章号、词卡引用和密度的离线回归，降低私人重复测试频率。

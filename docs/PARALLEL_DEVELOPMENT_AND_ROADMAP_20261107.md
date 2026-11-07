@@ -184,3 +184,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 20. PUBLIC-11-06 五组件集成前安全门禁完成（2026-11-08）
 
 [PR #24](https://github.com/kim-1868/miaowu-english-public/pull/24) 已合并，公共 `main` 提交 `3cf89c44188c8f4a2a5717b70f3a4ed5d628ab48`。新增 [五组件私人接线/旧逻辑替换清单](PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md) 及公开 Node [防双重绑定/权限边界测试](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393623856)，合并后 [main](https://github.com/kim-1868/miaowu-english-public/actions/runs/42393655589) 通过。29 文件 SHA-256 交付 Artifact ID `13582676147`。**公共组件已开发验收 5/5，私人真正接线仍 0/5**；避免覆盖并行开发中的私人 V1.1。后续必须按私人最新冻结 SHA 走逐项集成及真实功能/权益回归。
+
+
+## PUBLIC-BUILD-01：把重复前端 Build/QA 留在公共仓库（2026-11-08）
+
+公共 PR/main 持续运行 Node、白名单、29 项 UI 构建、Chromium 合成回归；新增独立 SHA-256 交付校验及只有固定公共 SHA/手动确认才能创建的 GitHub Release，发布 ZIP/manifest/SHA256SUMS，不自动读取私人仓库或部署 Cloudflare。真正的私人业务/D1 回归仍在私人受控候选阶段。具体流程参考 docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md。
