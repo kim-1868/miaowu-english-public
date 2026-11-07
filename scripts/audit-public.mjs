@@ -80,13 +80,15 @@ export const APPROVED_PATHS = new Set([
   "tests/public-shelf-card.test.mjs",
   "tests/public-reader-panels.test.mjs",
   "tests/public-word-card-view.test.mjs",
+  "tests/public11-integration-boundary.test.mjs",
   "tests/public-ui.test.mjs",
   "tests/announcement-regression.test.mjs",
   "tests/boundary.test.mjs",
   "docs/PUBLIC_MIGRATION_MANIFEST.md",
   "docs/PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md",
   "docs/UPDATE_LOG.md",
-  "docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md"
+  "docs/PUBLIC_FRONTEND_OWNERSHIP_20261107.md",
+  "docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md"
 ]);
 
 export function allowedPath(path) {
