@@ -4,7 +4,7 @@
 
 ## 本次已落地
 
-- 已在不复制私人 Git 历史的前提下，独立迁入 **18 个经审核的真实网站公共样式、交互脚本与小型 SVG 素材**。
+- 已在不复制私人 Git 历史的前提下，独立迁入 **24 个经审核的真实网站公共样式、交互脚本与小型 SVG 素材**。
 - 网站公告及历史记录、手机桌面安装教程保留了原 V1.1 公共端 JS，并且通过了合成数据下的交互测试。
 - 新建 `showcase/index.html`：使用真实组件 + 合成公告展示效果，绝不访问生产 D1、用户订单、小说或词库。
 - `npm run check` 包含精确文件白名单、常见密钥特征与 JS 语法检查，`npm test` 用 Node 22 内置测试验证基本行为。
@@ -50,7 +50,7 @@ npm run dev
 
 ## 公共更新构建与交付（PUBLIC-06）
 
-公开前端的 18 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
+公开前端的 24 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
 
 **注意**：构建产物不是完整网站，也不自动推送至私人仓库或生产环境。私人发布流程须对固定 SHA 做逐文件审阅与校验，并在私人环境验证业务/权益和上线门禁；严禁把私人资料复制到公共仓库。
 
@@ -67,3 +67,9 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ```
 
 它检查 manifest、18 个精确白名单文件、字节大小、逐文件 SHA-256 与额外文件/符号链接，并输出 `identical` / `review_required` / `missing`；**绝不写私人文件或自动部署**。需要人工比较标记差异的文件，再走私人 Gate 和受控预览。输入的完整 SHA 需要从已审阅 PR/Actions 独立核对，**manifest 自述的 SHA 不构成签名或可信发布证明**。
+
+## PUBLIC-10：公开页面与浏览器学习 UI 的源代码归属
+
+新增 `public/index.html`、`public/updates.html`、`public/flashcards.js`、`public/chapter-words.js`、`public/echo-cloud.js`、`public/onboarding.js`，来源固定私人 V1.1 提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，不复制 Git 历史。它们用于公共仓库的 UI 开发、构建和离线接口检查。
+
+**非常重要**：首页仍引用私人环境提供的 `/app.js` 等模块，公共交付包不包含这些文件；完整网站的账号、权限和 D1 后端仍在私人仓库。公共版本是固定快照，不会自动同步用户在私人网站进行的后续修改。进入生产前必须审阅完整提交 SHA、24 文件 SHA-256 清单、公共/私人差异并完成私人权限回归，严禁直接部署此交付包。

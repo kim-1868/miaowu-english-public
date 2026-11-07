@@ -23,12 +23,12 @@ function fixture(fn) {
   } finally { rmSync(root,{recursive:true,force:true}); }
 }
 
-test("valid 18-file artifact and identical private checkout => only read-only status",()=>{
+test("valid 24-file artifact and identical private checkout => only read-only status",()=>{
   fixture(({bundle,target})=>{
     const before=readFileSync(join(target,PUBLIC_UI_PATHS[0]));
-    assert.equal(verifyPublicBundle(bundle,SHA).files.length,18);
+    assert.equal(verifyPublicBundle(bundle,SHA).files.length,24);
     const report=comparePublicUi(bundle,target,SHA);
-    assert.deepEqual(report.counts,{identical:18,missing:0,review_required:0});
+    assert.deepEqual(report.counts,{identical:24,missing:0,review_required:0});
     assert.equal(report.decision,"READ_ONLY_REVIEW_NOT_MERGED_NOT_DEPLOYED");
     assert.deepEqual(readFileSync(join(target,PUBLIC_UI_PATHS[0])),before);
   });
@@ -76,7 +76,7 @@ test("manifest traversal or extra files are always rejected",()=>{
     const json=JSON.parse(readFileSync(manifest,"utf8"));
     json.files[0].path="../not-public.txt";
     writeFileSync(manifest,JSON.stringify(json));
-    assert.throws(()=>verifyPublicBundle(bundle,SHA),/exactly the 18 approved/);
+    assert.throws(()=>verifyPublicBundle(bundle,SHA),/exactly the 24 approved/);
   });
   fixture(({bundle})=>{
     writeFileSync(join(bundle,"unreviewed.txt"),"unexpected extra");
