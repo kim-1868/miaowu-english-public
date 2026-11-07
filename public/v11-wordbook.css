@@ -79,3 +79,26 @@ html[data-theme="dark"] .vocab-card .vocab-example button.v11-example-word{
  background:transparent;
  color:inherit;
 }
+
+/* PUBLIC-03: example-word actions and word-card meanings remain legible at
+   small sizes and in dark mode without changing word/meaning identity. */
+#wordPop .v11-example-heading {flex-wrap:wrap;min-width:0}
+#wordPop .v11-example-heading > * {min-width:0}
+#wordPop .word-extra p,
+.vocab-card .vocab-example {overflow-wrap:anywhere}
+@media (max-width:430px) {
+ #wordPop .v11-example-heading {align-items:flex-start;gap:8px}
+ #wordPop .v11-example-heading button,
+ .vocab-card .v11-example-audio {min-height:44px}
+ #wordPop .v11-pron-ipa {overflow-wrap:anywhere}
+}
+html[data-theme="dark"] #wordPop .v11-example-heading button,
+html[data-theme="dark"] .vocab-card .v11-example-audio {
+ color:#f3d3dd;
+ border-color:#846879;
+}
+html[data-theme="dark"] #wordPop .v11-example-heading button:focus-visible,
+html[data-theme="dark"] .vocab-card .v11-example-audio:focus-visible {
+ outline:2px solid #f3bfcd;
+ outline-offset:2px;
+}

@@ -32,3 +32,23 @@ a{color:#7d455c;text-underline-offset:3px}a:focus-visible{outline:2px solid #7d4
 @media(max-width:640px){.sample-header{min-height:72px}.sample-brand strong{font-size:20px}.sample-header a{font-size:11px}.sample-kicker{margin-top:23px}.sample-section{margin:28px 0 32px}.sample-section-heading{align-items:start;flex-direction:column;gap:5px}.sample-book-grid,.sample-reader-grid{grid-template-columns:minmax(0,1fr)}.sample-book-card{grid-template-columns:108px minmax(0,1fr);gap:15px}.sample-book-copy h3{font-size:20px}.sample-reader-paper{padding:19px}.sample-reader-toolbar{padding:11px 17px}}
 @media(max-width:340px){.sample-book-card{grid-template-columns:95px minmax(0,1fr);gap:10px}.sample-book-cover .sample-cover-glyph{font-size:34px}.sample-book-copy h3{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* PUBLIC-03 sample-only layout at common phone widths. This does NOT alter
+   the live book grid; production-equivalent rules live in public/v11-*.css. */
+.sample-book-copy,.sample-reader-paper,.sample-word-card {min-width:0}
+.sample-book-copy p,.sample-word-card span {overflow-wrap:anywhere}
+.sample-reader-night .sample-reader-toolbar {color:#f5e0e7}
+.sample-reader-night .sample-chapter-index {color:#ead6dc;opacity:.9}
+@media (max-width:430px) {
+ .sample-book-cover {min-width:0}
+ .sample-reader-paper {padding:18px 16px 22px}
+ .sample-book-card {min-width:0}
+ .sample-reader-paper>p:not(.sample-chapter-index) {font-size:16px;line-height:1.95}
+}
+@media (max-width:360px) {
+ .sample-shell {width:calc(100% - 20px)}
+ .sample-book-card {grid-template-columns:88px minmax(0,1fr);gap:9px;padding:9px}
+ .sample-book-copy h3 {font-size:17px}
+ .sample-reader-toolbar {gap:8px;flex-wrap:wrap}
+ .sample-word-card {padding:13px}
+}
