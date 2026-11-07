@@ -1,0 +1,113 @@
+# PUBLIC UI ONLY: manual audited GitHub Release, never deploys the private website.
+name: Public UI reviewed Release (manual only)
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: "Reviewed PUBLIC main full 40-character commit SHA"
+        required: true
+        type: string
+      confirmation:
+        description: "Type RELEASE_PUBLIC_UI_ONLY to publish public assets"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-ui-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-build:
+    if: ${{ github.repository == 'kim-1868/miaowu-english-public' && github.ref == 'refs/heads/main' && inputs.confirmation == 'RELEASE_PUBLIC_UI_ONLY' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout reviewed PUBLIC source only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Pin reviewed main commit
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_SHA" =~ ^[a-fA-F0-9]{40}$ ]] || exit 1
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          echo "REVIEWED_PUBLIC_SHA=$EXPECTED_SHA"
+      - name: Audit, test, build and verify public files
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run check
+          npm test
+          npm run build:public-ui
+          node scripts/verify-public-ui-release.mjs dist-public-ui "$GITHUB_SHA"
+      - name: Archive public files with SHA256SUMS
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets
+          archive="wordletter-public-ui-${GITHUB_SHA}.zip"
+          (cd dist-public-ui && zip -X -q -r "../release-assets/$archive" .)
+          cp dist-public-ui/manifest.json release-assets/manifest.json
+          (cd release-assets && sha256sum "$archive" manifest.json > SHA256SUMS)
+          (cd release-assets && sha256sum -c SHA256SUMS)
+          unzip -t "release-assets/$archive" > /dev/null
+          test "$(find release-assets -maxdepth 1 -type f | wc -l)" -eq 3
+      - name: Upload inspected public Release candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-release-candidate-${{ github.sha }}
+          path: release-assets/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish-release:
+    needs: verify-build
+    if: ${{ github.repository == 'kim-1868/miaowu-english-public' && github.ref == 'refs/heads/main' && inputs.confirmation == 'RELEASE_PUBLIC_UI_ONLY' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Download the previously verified public bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: public-release-candidate-${{ github.sha }}
+          path: release-assets
+      - name: Recheck SHA256SUMS before GitHub Release
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd release-assets
+          archive="wordletter-public-ui-${GITHUB_SHA}.zip"
+          test -s "$archive"
+          test -s manifest.json
+          test -s SHA256SUMS
+          test "$(find . -maxdepth 1 -type f | wc -l)" -eq 3
+          sha256sum -c SHA256SUMS
+          unzip -t "$archive" > /dev/null
+      - name: Publish public-only GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="public-ui-${GITHUB_SHA}"
+          gh release create "$tag" \
+            "release-assets/wordletter-public-ui-${GITHUB_SHA}.zip" \
+            release-assets/manifest.json \
+            release-assets/SHA256SUMS \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "WordLetter public UI ${GITHUB_SHA:0:12}" \
+            --notes "Audited public UI only. No private source, books, user data, D1 or Cloudflare deploy. Source SHA: ${GITHUB_SHA}. Verify the manifest and SHA256SUMS before private integration." \
+            --latest=false
