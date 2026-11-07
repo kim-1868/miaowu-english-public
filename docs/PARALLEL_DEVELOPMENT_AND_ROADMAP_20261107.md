@@ -129,3 +129,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 12. PUBLIC-11 下一阶段：公共 UI 从私人 app.js 有序拆分（2026-11-07）
 
 已创建 [PUBLIC-11 Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。公共首页现在拥有实际标记源，但核心私人 `app.js` 仍混合 UI 与受保护业务；以后逐个迁移纯展示 DOM、书架/导航、阅读工具栏和词卡视图，不直接复制私人的 `app.js`。每次拆分均用公共合成接口契约与 Chromium 回归，保持私人服务器权限/学习状态/付费判断独立。用户正在完善 V1.1 时，不自动覆盖私人分支，待版本审阅后再整合。
+
+
+## PUBLIC-11-01 首个可公开的 app.js 控制组件（2026-11-07）
+
+已在公共独立分支 `feature/public11-reader-preferences-component-20261107` 开发 `public/reader-preferences.js` 及合成阅读页面测试。它仅提供日夜切换、12–24px 字号/标题联动等展示逻辑；私人原 `app.js` 仍运行，未替换/部署。公共 PR、Node 测试和 Chromium 将独立验证；后续接入私人时必须审阅最新私人 `app.js` 的重复事件、字号持久化和移动端 CSS 差异。

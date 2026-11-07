@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-11-01｜从私人 app.js 拆分公开阅读控制组件（待 PR 验证）
+
+- **源逻辑**：私人 V1.1 `public/app.js`，参考 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`。仅提取全站夜间切换与阅读字体/标题缩放逻辑，不复制小说、用户、订单、权限或学习持久化内容。
+- **新公共组件**：`public/reader-preferences.js`，只在调用 `create().mount()` 时注册事件；默认 18px、最小 12px、最大 24px，保留原 UI 元素 ID、本地显示偏好键名、字号按钮禁用和全站夜读标签。
+- **测试**：`tests/public-reader-controls.test.mjs` 新增单元/DOM 合同；`showcase/reader-controls-contract.html/css/js` 使用纯合成文字；公共 Chromium 新增 320/390/1440px 交互检查。公共交付白名单 24→25 文件，更新完整哈希构建与只读差异预检测试。
+- **私人影响**：私人 `app.js` **完全没有改**，该组件未接入正式/预览站；仍需在后续冻结候选时先移除原控制监听，再做一次性整合验证，不能简单追加两份逻辑。关联 [PUBLIC-11 Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。
+
+
 ### 2026-11-07 · PUBLIC-10｜公开首页、历史公告页与四个学习 UI 模块迁移（已完成）
 
 - 固定私人开发源版本：`0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，逐项审查并干净复制 `public/index.html`、`public/updates.html`、`public/flashcards.js`、`public/chapter-words.js`、`public/echo-cloud.js`、`public/onboarding.js`。

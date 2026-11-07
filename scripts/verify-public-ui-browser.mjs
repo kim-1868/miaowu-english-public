@@ -96,6 +96,37 @@ try {
     console.log("PUBLIC_BROWSER_OK",width,layout.cols,"columns; no overflow; 12-24px; dark contrast");
     await page.close();
   }
+  // PUBLIC-11: exercise the extracted DOM controls at common mobile and desktop sizes.
+  for (const width of [320, 390, 1440]) {
+    const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+    const pageErrors=[];
+    page.on("pageerror",e=>pageErrors.push(e.message));
+    await page.route("**/*",route=>{
+      if(route.request().url().startsWith("http://127.0.0.1:4173/"))route.continue();
+      else route.abort();
+    });
+    const uri="http://127.0.0.1:4173/showcase/reader-controls-contract.html";
+    const response=await page.goto(uri,{waitUntil:"networkidle"});
+    assert.equal(response.status(),200);
+    assert.ok(await page.locator("#readerFontSlider").isVisible());
+    assert.equal(await page.locator("#readerFontValue").textContent(),"18px");
+    await page.locator("#biggerFont").click();
+    assert.equal(await page.locator("#readerFontValue").textContent(),"19px");
+    await page.locator("#readerFontSlider").evaluate(el=>{
+      el.value="24";el.dispatchEvent(new Event("input",{bubbles:true}));
+    });
+    assert.equal(await page.locator("#storyText").evaluate(el=>getComputedStyle(el).fontSize),"24px");
+    assert.equal(await page.locator("#biggerFont").isDisabled(),true);
+    await page.locator("#globalThemeToggle").click();
+    assert.equal(await page.locator("html").getAttribute("data-theme"),"dark");
+    assert.equal(await page.locator("#toggleNight").getAttribute("aria-pressed"),"true");
+    const layout=await page.evaluate(()=>document.documentElement.scrollWidth);
+    assert.ok(layout<=width+1,"PUBLIC-11 horizontal overflow "+width+" -> "+layout);
+    if(width===390)await page.screenshot({path:join(out,"reader-controls-390-night.png"),fullPage:true});
+    assert.deepEqual(pageErrors,[]);
+    console.log("PUBLIC_READER_CONTROLS_OK",width,"px");
+    await page.close();
+  }
   console.log("PUBLIC_BROWSER_MATRIX_OK "+widths.length+" viewports, synthetic-only");
 } finally {
   if(browser)await browser.close();
