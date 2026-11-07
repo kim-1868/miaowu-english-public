@@ -73,3 +73,6 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 
 - `public/reader-preferences.js`：从私人 UI 源逻辑中独立实现阅读字号/夜间切换（已通过公共 Chromium）；对应 PR #19，源参考 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`。
 - `public/shelf-pagination.js`：从私人书架分页视图中抽出纯 DOM/UI 与事件回调，**不包含任何实际数据查询、用户权限判断或上传**；对应 PUBLIC-11-02。二者都是**公共新组件**，并不是已接入私人运行网站；私人原 `app.js` 仍为生产真实功能入口。
+
+
+**PUBLIC-11-02 核验里程碑**：现在的公共交付包包含 26 个文件，其中最初迁入的 24 个文件单独在前文列出，新增 2 个公开纯 UI 组件为 `reader-preferences.js` 与 `shelf-pagination.js`；[PR #20](https://github.com/kim-1868/miaowu-english-public/pull/20) 合并提交 `bc3de0fe82c275204d26c5a2ffa1f4800e7ac6a3`，公共浏览器测试及主分支构建全部通过，Artifact ID `13580371015`。私人参考 26 文件对照结果：20 相同、4 个已知差异、2 个公共新增文件待集成，不应把此结果误读为私人代码缺少应上线的核心功能。

@@ -4,7 +4,7 @@
 
 ## 本次已落地
 
-- 已在不复制私人 Git 历史的前提下，独立迁入 **24 个经审核的真实网站公共样式、交互脚本与小型 SVG 素材**。
+- 当前交付包有 **26 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 2 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
 - 网站公告及历史记录、手机桌面安装教程保留了原 V1.1 公共端 JS，并且通过了合成数据下的交互测试。
 - 新建 `showcase/index.html`：使用真实组件 + 合成公告展示效果，绝不访问生产 D1、用户订单、小说或词库。
 - `npm run check` 包含精确文件白名单、常见密钥特征与 JS 语法检查，`npm test` 用 Node 22 内置测试验证基本行为。
@@ -50,7 +50,7 @@ npm run dev
 
 ## 公共更新构建与交付（PUBLIC-06）
 
-公开前端的 24 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
+公开前端的 26 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
 
 **注意**：构建产物不是完整网站，也不自动推送至私人仓库或生产环境。私人发布流程须对固定 SHA 做逐文件审阅与校验，并在私人环境验证业务/权益和上线门禁；严禁把私人资料复制到公共仓库。
 
@@ -85,3 +85,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11 第二批：书架分页纯 UI 组件
 
 从原 `app.js` 拆分 `public/shelf-pagination.js`，用 `MiaowuShelfPagination.create({document}).render({container,meta,currentPage,onPageChange})` 构建无后端权限的分页导航。按原文案提供上一页/下一页、页码省略号与 aria-current 语义。 [查看纯合成书架分页演示](showcase/shelf-pagination-contract.html)。**本次未接入私人网站**：真实 `/api/books`、分类权限与滚动行为依然由私人端负责。
+
+## PUBLIC-11 当前交付快照（2026-11-07）
+
+[公共 PR #19](https://github.com/kim-1868/miaowu-english-public/pull/19) 阅读控制与 [公共 PR #20](https://github.com/kim-1868/miaowu-english-public/pull/20) 书架分页均已完成 Node + Chromium 验收。当前 SHA-256 交付包是 `wordletter-public-ui-bc3de0fe82c275204d26c5a2ffa1f4800e7ac6a3`，包含 26 个文件（Artifact ID `13580371015`）。与私人 V1.1 固定参考版本对比：20 个 Git blob SHA 相同、4 个公共改动需合并、2 个新增公共组件等待私人集成。**没有修改预览或正式网站。**

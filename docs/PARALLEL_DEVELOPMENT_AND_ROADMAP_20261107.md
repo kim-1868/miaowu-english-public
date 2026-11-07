@@ -139,3 +139,11 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## PUBLIC-11-02 书架分页纯展示层（2026-11-07）
 
 基于私人 V1.1 `renderShelfPagination`，公共创建独立 DOM 分页器。通过注入 `meta/currentPage/onPageChange` 在公共用合成数据测试；不读取私人书库、订单、API 或 D1。交付包白名单由 25 增为 26。此时仍不在私人 `app.js` 安装，以免覆盖同时开发的功能。
+
+
+## 13. PUBLIC-11-01 / 02 验收结果与后续拆分（2026-11-07）
+
+- 第一批阅读控制 [PR #19](https://github.com/kim-1868/miaowu-english-public/pull/19) 已合并，Node/Chromium 与 main CI 成功；交付白名单 24→25。
+- 第二批书架分页 [PR #20](https://github.com/kim-1868/miaowu-english-public/pull/20) 已合并，Node [42387700757](https://github.com/kim-1868/miaowu-english-public/actions/runs/42387700757)、Chromium [42387700804](https://github.com/kim-1868/miaowu-english-public/actions/runs/42387700804)、main [42387778840](https://github.com/kim-1868/miaowu-english-public/actions/runs/42387778840) 成功，交付白名单 25→26。
+- 最新公共合并 SHA `bc3de0fe82c275204d26c5a2ffa1f4800e7ac6a3`；对应 26 文件 Artifact ID `13580371015`。
+- 后续纯前端可以继续按组件拆：书架卡片、阅读工具栏、词卡翻转/动效；真实 API/权限、词义身份和学习记录仍私人。**未对私人活动分支、预览站、正式站或 D1 改动。**
