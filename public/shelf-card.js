@@ -53,7 +53,9 @@
         img.setAttribute("decoding", "async");
         cover.append(img);
       }
-      const tags = Array.isArray(book.cover_tags) ? book.cover_tags.slice(0, 8).filter(t =>
+      // Tags are user-configurable and have no arbitrary count limit.
+      // Keep each label as textContent and each color strictly six-digit hex.
+      const tags = Array.isArray(book.cover_tags) ? book.cover_tags.filter(t =>
         t && typeof t.label === "string" && t.label.length > 0 &&
         typeof t.color === "string" && /^#[0-9a-f]{6}$/i.test(t.color)) : [];
       if (tags.length) {
