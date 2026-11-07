@@ -9,7 +9,7 @@
 - 新增 `scripts/story-provider-contract.mjs` 与公共测试：Codex/Claude/Gemini 三个确定适配器、已保存章节连续性、跨模型单章已尝试阻断、1–8章及1–20分钟预算上限和不可发布状态。
 - 严格使用匿名虚构章节序号，没有真实小说、词库、模型凭证、访问令牌、CLI 调用、D1 或出版操作。
 - 与私人 `w3_provider_scheduler.py` 的职责分离：公共回归只验证通用约束；私人本机引擎负责真正 CLI 调用及语义审核；不触及已冻结的 V1.1 网站。
-- 此项待公共 PR Node Actions 成功并合并后填写结果。
+- **公共验证完成**：[PR #31](https://github.com/kim-1868/miaowu-english-public/pull/31) 已 Squash 合并，提交 `f5955563fc7eb1a9920b8c36d15435d47e3d07b9`；[公共 Actions #42403534197](https://github.com/kim-1868/miaowu-english-public/actions/runs/42403534197) 通过。无需私人 Actions。私人真实 Codex/Claude/Gemini 兼容性与故事内容审校不在公共测试范围内。
 
 
 ### 2026-11-08 · PUBLIC-DEV-CORE-WAVE1｜3 个纯逻辑组件迁入公共开发测试（完成）
