@@ -117,3 +117,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11 五组件接线准备（仍未进入私人站）
 
 公开仓库新增 [五组件安全整合与私人门禁清单](docs/PUBLIC11_COMPONENT_INTEGRATION_GATE_20261108.md)；配套 Node 合同测试保证五个模块只是**显式创建的 UI 适配器**，不在公共 `index.html` 里自动叠加加载，从而避免覆盖你同时维护的私人 `app.js`。
+
+## PUBLIC-11-07 私人隔离候选进度
+
+公共书架分页组件已经作为第一个实际接线候选，进入私人 [Draft PR #190](https://github.com/kim-1868/miaowu-english/pull/190)，其[限定分页离线检查](https://github.com/kim-1868/miaowu-english/actions/runs/42396232279)通过。该 PR 不自动部署、不合入活动分支；后续须基于最新私人 SHA、完整私人 Gate 和用户批准后才能继续。五个公共组件已有一个**隔离候选**，尚无组件正式集成上线。
