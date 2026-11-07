@@ -91,3 +91,10 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 - `public/reader-panels.js`：只有页面层的章节抽屉、词汇抽屉、释义显示，CSS/ARIA 状态由本组件同步。真实书籍列表、章节权限、词汇拉取、朗读引擎、保存阅读进度仍全部在私人仓库。
 - 该公共独立组件无自动安装逻辑。现有私人 `app.js` 继续是用户网站入口，未来需受控替换旧 `onclick` 与相关状态，避免重复事件和回归问题。
 - 公共白名单/构建包从 27 升到 28 个文件。**已完成验收**：[PR #22](https://github.com/kim-1868/miaowu-english-public/pull/22) 合并 SHA `9db45dba7b072f716992eb0fdba2e0517886ec86`；Node CI 42391549720、Chromium 42391549751、main 构建 42391644048 通过，Artifact ID `13581776893`。私人原代码、数据库与部署未变。
+
+
+## PUBLIC-11-05 独立词卡展示组件（2026-11-08）
+
+- `public/word-card-view.js` 是**公开 UI 新组件**，严格只用调用方传入的词卡展示内容、状态、前后位置，采用 DOM/纯文本渲染；并不包含真实可售卖词库、同词义归并/去重规则的服务器实现、收藏/掌握写入、朗读业务。
+- `showcase/word-card-contract.html/css/js` 是三条虚构例子；合成 Node 与 Chromium 验证文本注入、加载/缺失、按钮回调、底部词卡不阻挡阅读。
+- 扩大公共交付白名单 28→29 文件；私人站继续使用 `app.js`，本轮无自动部署、无 D1 访问。

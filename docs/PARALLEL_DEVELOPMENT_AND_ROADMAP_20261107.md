@@ -167,3 +167,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 17. PUBLIC-11-04 测试及打包完成（2026-11-08）
 
 阅读目录/词汇抽屉/释义展示层 [PR #22](https://github.com/kim-1868/miaowu-english-public/pull/22) 已 Squash 合并公共 `main`，提交 `9db45dba7b072f716992eb0fdba2e0517886ec86`。Node [42391549720](https://github.com/kim-1868/miaowu-english-public/actions/runs/42391549720)、Chromium [42391549751](https://github.com/kim-1868/miaowu-english-public/actions/runs/42391549751)、main [42391644048](https://github.com/kim-1868/miaowu-english-public/actions/runs/42391644048) 成功，28 文件 Artifact ID `13581776893`。对照私人开发固定基线 20 同 SHA、4 个待审阅差异、4 个新增展示组件。下一步继续公开视图模块，私人真实业务仅在候选阶段整合和验收；本轮未改私人 V1.1、预览、生产与 D1。
+
+
+## 18. PUBLIC-11-05 非阻塞词卡纯展示层（2026-11-08）
+
+公共独立 `word-card-view.js` 提取旧词卡视图的音标/例句/常用搭配/切换/收藏与掌握按钮 DOM。实际词义 ID、同一义项跨书合并、会员权益、学习持久化由私人服务端决定。公共 Node 注入/回调/加载与移动 Chromium 合成回归后，打包为 29 文件 SHA-256 交付包。私人 V1.1 原词卡仍运行且未被修改，最终整合需先移除原动态 HTML 和重复监听。
