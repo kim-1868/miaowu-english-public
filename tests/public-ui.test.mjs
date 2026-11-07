@@ -115,3 +115,20 @@ test("announcement renderer uses plain text, not HTML injection", () => {
   assert.match(source, /\.textContent\s*=/);
   assert.doesNotMatch(source, /\.innerHTML\s*=/);
 });
+
+test("PUBLIC-01 synthetic bookshelf and day/night reader layout is isolated", () => {
+  const html = file("showcase/reading-shelf.html");
+  const css = file("showcase/reading-shelf.css");
+  assert.equal((html.match(/class="sample-book-card"/g) || []).length, 3);
+  assert.match(html, /月光邮局/);
+  assert.match(html, /虚构书名/);
+  assert.match(html, /sample-reader-day/);
+  assert.match(html, /sample-reader-night/);
+  assert.match(html, /不记录掌握状态/);
+  assert.match(html, /合成书架/);
+  assert.doesNotMatch(html, /<script|\/api\/|<form|CLOUDFLARE_|content\/drafts|github_pat_/i);
+  assert.match(css, /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(css, /@media\(max-width:640px\)/);
+  assert.match(css, /\.sample-reader-night/);
+  assert.match(markup, /href="\.\/reading-shelf\.html"/);
+});
