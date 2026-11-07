@@ -129,3 +129,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-BUILD-01 公共仓库承担 Build / Node / Chromium / 手动 Release
 
 现在公共 main 的自动工作流除了 29 项公开文件构建外，新增独立 SHA-256 交付验证。另提供需完整 source SHA 和人工确认的 GitHub Release 手动工作流；安全审查成功后仅可发布公开 UI zip、manifest 和 SHA256SUMS，不携带私人业务代码。详见 [公共 Build 与 Release 流程及私有边界](docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md)。**本流程不会自动创建 Release、自动覆盖私人 app.js 或部署 Cloudflare。**
+
+## 小说工厂工作台 W1（独立合成演示）
+
+执行 `npm run dev` 后打开 `/showcase/story-workbench.html`：可创建虚构批次、模拟逐章推进、暂停/失败恢复、审核及导出不可上架的状态摘要。详见 [W1 工作台验收与 W2 接口设计](docs/STORY_WORKBENCH_W1_HANDOFF_20261108.md)。此演示不调用真实 AI、D1 或用户权限；不构成 V1.1 正式网站改动。

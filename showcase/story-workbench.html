@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>妙屋英语 · 小说工厂工作台 W1（公开合成演示）</title>
+<link rel="stylesheet" href="./story-workbench.css">
+</head>
+<body>
+<div class="workspace">
+  <aside class="rail">
+    <div class="brand"><span class="cat-mark" aria-hidden="true">♧</span><div><strong>妙屋英语</strong><small>WORDLETTER</small></div></div>
+    <div class="rail-label">STORY FACTORY</div>
+    <nav aria-label="工作台导航">
+      <a href="#overview" class="nav-item active" aria-current="page"><span>▤</span> 总览</a>
+      <a href="#create" class="nav-item"><span>✎</span> 创建任务</a>
+      <a href="#tasks" class="nav-item"><span>▥</span> 生产队列</a>
+      <a href="#log" class="nav-item"><span>◷</span> 操作记录</a>
+    </nav>
+    <div class="rail-footer"><span class="tiny-dot"></span> 演示环境 · 不连接模型<p>所有任务和进度仅保存在本次页面会话。刷新会重置。</p></div>
+  </aside>
+  <main id="overview" class="main">
+    <header class="topline"><div class="crumb">内容工作台 <span>/</span> 小说工厂 <span>/</span> W1</div><span class="tag"><span class="tiny-dot"></span> PUBLIC DEMO</span></header>
+    <div class="page-intro">
+      <div><p class="eyebrow">THE STORY STUDIO / 故事工坊</p><h1>让好故事，<em>一章章发生。</em></h1><p class="lead">在这里创建批次、查看进度、暂停或续跑、提交审核。当前是可交互的合成演示，不调用 AI、不保存真实小说。</p></div>
+      <div class="line-cat" aria-hidden="true"><svg viewBox="0 0 160 155" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M46 65 35 24l34 20Q81 39 95 44l34-20-10 41c11 12 15 26 11 42-6 23-28 31-50 31-26 0-48-11-52-34-3-16 3-29 18-39Z"/><path d="M53 83h3m48 0h3M79 89l-5-1h12l-7 6-1 5M30 94 8 89m23 14-24 3m119-12 25-5m-24 14 25 3M71 116q8 8 17 0"/><path d="M60 37V18m38 20V18" stroke-width="1.4"/></svg></div>
+    </div>
+    <div class="notice" role="note"><span aria-hidden="true">ⓘ</span><div><strong>独立合成测试，不是真实小说生产服务。</strong>请不要在公开演示中输入私人小说、真实词库或凭证。所有按钮只改变页面内存状态；真正的 AI 连续写作和出版台连接属于后续 W2–W5。</div></div>
+    <section aria-label="批次统计" class="stats">
+      <div class="stat"><span>任务总数</span><strong id="statBooks">0</strong><small>在本次页面会话中</small></div>
+      <div class="stat"><span>已模拟完成章节</span><strong id="statChapters">0<small> / 0</small></strong><small>不会生成真实正文</small></div>
+      <div class="stat"><span>正在模拟</span><strong id="statRunning">0</strong><small>点击后按章推进</small></div>
+      <div class="stat"><span>待人工审核</span><strong id="statReview">0</strong><small>必须审核才可演示导出</small></div>
+    </section>
+    <div class="content-grid">
+      <section class="panel create-panel" id="create">
+        <div class="panel-header"><div><p class="section-num">01 / CREATE</p><h2>新建生产任务</h2><p>配置一个原创故事批次</p></div><span class="panel-symbol">✎</span></div>
+        <form id="taskForm">
+          <label>项目名称 <input name="title" id="taskTitle" required maxlength="60" placeholder="例如：星河邮局的来信" value="星河邮局的来信"></label>
+          <div class="two-fields">
+            <label>词汇等级<select id="taskGrade" name="grade"><option value="cet4">四级 CET-4</option><option value="cet6">六级 CET-6</option><option value="postgrad">考研英语</option><option value="ielts">雅思 IELTS</option><option value="gk">高中英语</option></select></label>
+            <label>故事题材 <input id="taskGenre" name="genre" maxlength="40" value="都市悬疑" required></label>
+          </div>
+          <div class="three-fields">
+            <label>小说数量<input id="taskCount" name="count" type="number" min="1" max="12" value="2" required></label>
+            <label>每本章节<input id="taskChapters" name="chapters" type="number" min="1" max="30" value="8" required></label>
+            <label>目标词目<input id="taskWords" name="words" type="number" min="10" max="250" value="65" required></label>
+          </div>
+          <label>故事要求 <span class="optional">（可选，仅合成文字）</span><textarea id="taskOutline" name="outline" maxlength="400" rows="3" placeholder="输入虚构的简短故事线索，勿粘贴真实私人稿件"></textarea></label>
+          <button class="primary" type="submit" id="createBatchBtn">＋ 创建演示批次</button>
+          <p class="hint">此版本只展示任务调度，不会向服务器传送表单内容。</p>
+        </form>
+      </section>
+      <section class="panel queue-panel" id="tasks">
+        <div class="panel-header"><div><p class="section-num">02 / PRODUCTION</p><h2>生产队列</h2><p>按任务查看章节进度与可执行操作</p></div><label class="filter-label">筛选 <select id="statusFilter" aria-label="按状态筛选任务"><option value="all">全部状态</option><option value="planned">待启动</option><option value="running">进行中</option><option value="paused">已暂停</option><option value="failed">失败</option><option value="review">待审核</option><option value="ready">可演示导出</option></select></label></div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <div id="emptyTasks" class="empty-state" hidden>这个状态下还没有任务。可以在左侧创建新批次。</div>
+      </section>
+    </div>
+    <div class="content-grid lower">
+      <section class="panel detail-panel">
+        <div class="panel-header"><div><p class="section-num">03 / REVIEW</p><h2>任务详情与审核</h2><p>点击上方任务卡片查看</p></div></div>
+        <div id="taskDetail" class="task-detail" aria-live="polite"><p class="placeholder">请选择一条任务查看详情。</p></div>
+      </section>
+      <section class="panel log-panel" id="log">
+        <div class="panel-header"><div><p class="section-num">04 / HISTORY</p><h2>操作记录</h2><p>仅本次会话内存，不写入数据库</p></div></div>
+        <ol id="historyList" class="history-list"></ol>
+      </section>
+    </div>
+    <footer class="foot">WordLetter · Story Factory W1 <span>独立公开合成演示 / 不含真实稿件与模型连接 / 不可直接上架</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./story-workbench-demo.mjs"></script>
+</body></html>

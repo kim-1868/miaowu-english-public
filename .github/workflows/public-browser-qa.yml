@@ -6,6 +6,7 @@ on:
       - 'public/**'
       - 'showcase/**'
       - 'scripts/verify-public-ui-browser.mjs'
+      - 'scripts/verify-story-workbench-browser.mjs'
       - '.github/workflows/public-browser-qa.yml'
   workflow_dispatch:
 
@@ -37,6 +38,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Real Chromium phone/tablet/desktop, touch controls and night contrast
         run: node scripts/verify-public-ui-browser.mjs
+      - name: Story factory W1 synthetic UI Chromium interactions
+        run: node scripts/verify-story-workbench-browser.mjs
       - name: Save synthetic-only screenshots for manual inspection
         if: always()
         uses: actions/upload-artifact@v4
