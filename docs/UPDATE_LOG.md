@@ -4,12 +4,20 @@
 
 ## 更新记录
 
-### 2026-11-07 · PUBLIC-09｜公共前端交付的只读整合预检（待验收）
+### 2026-11-07 · CI-COST-02｜私人预览测试-only 更新不再重复部署
+
+- 私人 [PR #189](https://github.com/kim-1868/miaowu-english/pull/189) 已合并到 V1.1 活动分支，提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`。
+- 私人预览 `v11-preview-staging.yml` 的 `paths` 移除仅测试文件 `tests/v11-announcements-preview.test.mjs`，其它实际公告、首页及运营台代码路径保留；手动预览、部署前全套测试、预览密码验证和测试 D1 隔离不变。
+- 没有部署正式/预览站、没有修改 Cloudflare、账户、订单、小说或数据库。此次为 CI 触发优化，尚未通过下一次源代码预览发布验证实际节省分钟。
+
+
+### 2026-11-07 · PUBLIC-09｜公共前端交付的只读整合预检（已合并）
 
 - **目标**：公开工具对公共 UI 的 18 文件 SHA-256 交付包做离线完整性验证，并和本地私人代码 checkout 生成相同/待审阅/缺失的文件差异清单，杜绝直接覆盖正在开发的网站。
 - **改动**：新增 `scripts/plan-public-ui-handoff.mjs`、`tests/public-handoff.test.mjs`；扩展文件白名单、Node 检查、README 使用说明。
 - **安全范围**：不复制、上传、替换私人代码，不连接网络/D1/Cloudflare；源公共完整提交 SHA 需独立人工选择，不能把 manifest 字段当可信签名。
-- **测试与发布状态**：等待 PR 与公共 Actions 验证；尚未整合私人站，未发布预览或正式站。
+- **合并版本**：[PR #15](https://github.com/kim-1868/miaowu-english-public/pull/15) 已合并，公共提交 `1cc2f465889a306e0240651ee3c06be65fc5f435`；[PR Actions 42385304701](https://github.com/kim-1868/miaowu-english-public/actions/runs/42385304701) 与 [主分支检查 42385335370](https://github.com/kim-1868/miaowu-english-public/actions/runs/42385335370) 均通过。
+- **实际差异核对**：公共 `1cc2f465889a306e0240651ee3c06be65fc5f435` 对照私人 V1.1 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 的 18 个公开文件，14 个一致、4 个待逐项整合：`public/site-updates.js`、`public/v11-reader.css`、`public/v11-wordbook.css`、`public/v11-responsive.css`。均存在于私人站，不是缺失；没有自动覆盖或发布。
 
 
 ### 2026-11-07 · PUBLIC-08｜公开 UI 的 Chromium 多屏宽验证（已合并）
