@@ -40,3 +40,9 @@
 每次真实整合须把公共/私人两侧完整 SHA、合并文件、冲突审阅记录、CI URLs、预览验证结果、是否部署及回滚 SHA 写入公共 `docs/UPDATE_LOG.md` 的非敏感部分及私人 `docs/V11_DUAL_REPO_PROGRESS_AND_HANDOFF_20261107.md`。不写入用户、订单、兑换码或其他秘密。
 
 当前完成度：**公共五组件及合成 CI 完成；私人真正接线 0/5，私人正式候选 Gate 尚未实际运行；不会对用户正在开发的站点做自动覆盖。**
+
+## 首个真实接线候选状态（2026-11-08）
+
+- [私人 Draft PR #190](https://github.com/kim-1868/miaowu-english/pull/190) 已将公共 `shelf-pagination.js` 逐字节复制入**独立候选分支**并在私人 `app.js` 中做互斥分页委派，候选 SHA `1e98a8ce9a1ae50bb1fe7a92ebddd5abbb2cb928`。旧分页保留为脚本缺失时的回退。
+- [仅分页的私人离线 Actions #42396232279](https://github.com/kim-1868/miaowu-english/actions/runs/42396232279) 成功：静态语法、公共新路径/旧路径适配、离线生产静态打包。无 Cloudflare 密钥、D1 或部署。
+- **精确统计**：公开组件已实现 5/5；私人**隔离候选接线 1/5，正式集成到活动分支仍 0/5**。尚未通过真正的全栈授权/分页/设备回归，不能将 PR #190 合并或直接发布。
