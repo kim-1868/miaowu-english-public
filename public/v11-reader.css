@@ -29,3 +29,17 @@ html[data-theme="dark"] #view-reader .v11-font-slider,
 #readerLayout.night .v11-font-slider{background:var(--paper,#302931);border-color:var(--line,#61505b)}
 html[data-theme="dark"] #view-reader .v11-font-slider output,
 #readerLayout.night .v11-font-slider output{color:#f0c5d0}
+
+/* PUBLIC-03: keep 12–24px reader-size control usable at 320–430px;
+   controls only: no overrides to the reader's actual font-size state. */
+#view-reader .v11-font-slider {min-width:0}
+#view-reader .v11-font-slider > label {flex:0 0 auto}
+#view-reader .v11-font-slider input[type="range"] {max-width:100%}
+#view-reader .v11-font-slider output {font-variant-numeric:tabular-nums;text-align:right}
+@media (max-width:430px) {
+ #view-reader .v11-font-slider {gap:8px}
+ #view-reader .v11-font-slider input[type="range"] {min-width:0;flex:1 1 auto;width:auto;min-height:44px}
+ #view-reader .v11-font-slider output {flex:0 0 34px}
+}
+html[data-theme="dark"] #view-reader .v11-font-slider label,
+#readerLayout.night .v11-font-slider label {color:#eddae0}

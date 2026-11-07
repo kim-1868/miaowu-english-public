@@ -4,6 +4,16 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-03｜跨设备书架、阅读、词卡样式与测试
+
+- **位置**：公共开发分支 `feature/public03-responsive-reader-wordcard-20261107`，关联 [Issue #3](https://github.com/kim-1868/miaowu-english-public/issues/3)。
+- **修改**：`public/v11-responsive.css`、`public/v11-reader.css`、`public/v11-wordbook.css`；`showcase/reading-shelf.css`；新增 `showcase/responsive-contract.html/css/js`、`tests/responsive-layout.test.mjs`；同步 `showcase/index.html`、`scripts/audit-public.mjs`、`package.json` 与项目文档。
+- **内容**：320–430px 窄屏布局与换行保护、44px 移动触控区域、阅读字号滑块更合理伸缩、夜读标签及词卡按钮的文本对比、合成数据下的真实 CSS 选择器交互演示；不改阅读字号的存储逻辑，也不改掌握状态。
+- **验证**：分支 `e31ba67c54e060336d6295032b7d773e56e1a4fe` 的公共 Actions [42381994899](https://github.com/kim-1868/miaowu-english-public/actions/runs/42381994899) 通过。测试检查 CSS 结构、常用手机断点、夜读颜色对比、12–24px 演示字号与合成页面隔离。**属于结构/自动检查，非真实浏览器截图验收。**
+- **私人影响**：无部署、无 D1、无正式站/预览站更改；`v11-*.css` 三个公共文件与原私人基线已产生差异，后续必须对照私人最新提交逐项合并，不得整文件覆盖。
+- **状态**：代码已通过公共 CI；PR 合并版本随后补记。Issue #3 继续开放，等待浏览器视觉验收及私人业务整合。
+
+
 ### 2026-11-07 · PUBLIC-02｜公告展示与历史记录健壮性
 
 - **位置**：公共仓库；开发分支 `feature/public02-announcement-qa-20261107`。
