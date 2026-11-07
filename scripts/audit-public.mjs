@@ -44,6 +44,8 @@ export const APPROVED_PATHS = new Set([
   "scripts/audit-public.mjs",
   "scripts/serve.mjs",
   "scripts/build-public-ui.mjs",
+  "scripts/plan-public-ui-handoff.mjs",
+  "tests/public-handoff.test.mjs",
   "scripts/verify-public-ui-browser.mjs",
   "tests/public-bundle.test.mjs",
   "tests/public-ui.test.mjs",
