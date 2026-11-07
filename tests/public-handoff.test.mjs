@@ -39,7 +39,7 @@ test("mismatched private file is reported, never overwritten",()=>{
     const changed=join(target,PUBLIC_UI_PATHS[0]);
     writeFileSync(changed,"PRIVATE CUSTOM UI - KEEP THIS CHANGE");
     const report=comparePublicUi(bundle,target,SHA);
-    assert.equal(report.counts.identical,17);
+    assert.equal(report.counts.identical,23);
     assert.equal(report.counts.review_required,1);
     assert.equal(readFileSync(changed,"utf8"),"PRIVATE CUSTOM UI - KEEP THIS CHANGE");
   });
@@ -51,7 +51,7 @@ test("missing target files are review-only, never auto-created",()=>{
     rmSync(deleted);
     const report=comparePublicUi(bundle,target,SHA);
     assert.equal(report.counts.missing,1);
-    assert.equal(report.counts.identical,17);
+    assert.equal(report.counts.identical,23);
     assert.throws(()=>readFileSync(deleted));
   });
 });
