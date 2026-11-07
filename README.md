@@ -32,6 +32,10 @@ npm run dev
 
 详细文件清单与迁移阶段：**[PUBLIC_MIGRATION_MANIFEST.md](docs/PUBLIC_MIGRATION_MANIFEST.md)**。
 
+**并行开发与接下来任务**：详见 [PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md](docs/PARALLEL_DEVELOPMENT_AND_ROADMAP_20261107.md)。项目已建立 [公共 UI 演示任务 #1](https://github.com/kim-1868/miaowu-english-public/issues/1)、[公告回归任务 #2](https://github.com/kim-1868/miaowu-english-public/issues/2)、[响应式样式任务 #3](https://github.com/kim-1868/miaowu-english-public/issues/3)。
+
+**当前网站并行开发保护**：这个仓库只保存已审查的基线，绝不自动覆盖私人网站正在更改的页面、业务或部署配置；对齐版本必须先核对双方提交 SHA 与文件差异。
+
 ## 尚未切换的事项
 
 生产站仍使用私人仓库内的当前前端快照。该公共仓库尚未作为生产发布时的直接代码来源，未经集成验收不可直接替换私人网站。私人仓库的 GitHub Actions 仍有 2,000 分钟月度配额；公共标准托管运行器的免费规则不适用于私人运行。 
