@@ -189,3 +189,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## PUBLIC-BUILD-01：把重复前端 Build/QA 留在公共仓库（2026-11-08）
 
 公共 PR/main 持续运行 Node、白名单、29 项 UI 构建、Chromium 合成回归；新增独立 SHA-256 交付校验及只有固定公共 SHA/手动确认才能创建的 GitHub Release，发布 ZIP/manifest/SHA256SUMS，不自动读取私人仓库或部署 Cloudflare。真正的私人业务/D1 回归仍在私人受控候选阶段。具体流程参考 docs/PUBLIC_BUILD_RELEASE_HANDOFF_20261108.md。
+
+
+## PUBLIC-DEV-CORE-WAVE1：开放更多纯逻辑和合成测试（2026-11-08）
+
+在原 29 个独立 UI 发布文件之外，新增加 3 个纯算法源供公共 Node CI 验证：用户上传的小说文件解析、英语混排词性风险、间隔复习日程。来自私人固定源提交，公共同名源码按 Git Blob 校验；不公开作者原稿、商业词库、D1/账号/订单，也不自动加载到私人正式站。详细见 docs/PUBLIC_DEV_CORE_WAVE1_20261108.md。
