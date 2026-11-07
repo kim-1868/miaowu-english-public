@@ -105,3 +105,7 @@
 - 验证：PR 与合并后的公共 Actions 均通过。<https://github.com/kim-1868/miaowu-english-public/actions/runs/42380264106>
 - **尚需补做**：实际浏览器多设备截图/目视对比与可访问性检查。Issue #1 保持开放；这只是公共展示样例，尚未与私人正式站集成。
 - 私人站活动分支 `feature/v11-phase1-mobile-and-install-guide-20261106` 未修改或覆盖。
+
+## 8. PUBLIC-02 公告回归优化（2026-11-07）
+
+PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中新增历史公告去重、异常重试、公告标签键盘操作，以及较早网络响应不覆盖最新公告的处理；通过新增合成数据回归测试。详见 [公共更新日志](UPDATE_LOG.md)。**该修改没有同步到私人站点，正式公告和运营台尚未改变。**
