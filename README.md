@@ -105,3 +105,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-04 完成记录（2026-11-08）
 
 阅读目录、章节词汇抽屉与释义切换 [公共 PR #22](https://github.com/kim-1868/miaowu-english-public/pull/22) 已完成 Node、Chromium 合成页面和公共 `main` 自动验收。交付 SHA `9db45dba7b072f716992eb0fdba2e0517886ec86`，28 个前端文件，Artifact ID `13581776893`。固定私人基线对照：20 一致、4 有差异、4 个新公共组件待集成；**不是私人站已上线的功能**。
+
+## PUBLIC-11-05：独立非阻塞阅读词卡
+
+新增 `public/word-card-view.js`：以 `MiaowuWordCardView.create({document,onSpeak,onBookmark,onMastery,onNavigate,onClose}).show({wordId,word,position,total,loading,missing,bookmarked,mastered,anchor})` 纯 DOM 渲染词卡；在手机用不遮挡正文的底部面板。所有学习状态只通过回调向**私人业务**提出意图，不进行词义去重、HTTP、持久化或音频播放。见 [合成词卡页面](showcase/word-card-contract.html)。**尚未替换私人站词卡逻辑**。

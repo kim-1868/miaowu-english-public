@@ -205,6 +205,35 @@ try {
     console.log("PUBLIC_READER_PANELS_OK",width,"px");
     await page.close();
   }
+  // PUBLIC-11-05: synthetic nonmodal word card. Tests do not open any private APIs.
+  for(const width of [320,390,1440]){
+    const page=await browser.newPage({viewport:{width,height:920},deviceScaleFactor:1});
+    const errors=[];page.on("pageerror",e=>errors.push(e.message));
+    await page.route("**/*",route=>{
+      if(route.request().url().startsWith("http://127.0.0.1:4173/"))route.continue();
+      else route.abort();
+    });
+    const response=await page.goto("http://127.0.0.1:4173/showcase/word-card-contract.html",{waitUntil:"networkidle"});
+    assert.equal(response.status(),200);
+    await page.locator('[data-cloud-word="synthetic-word-1"]').click();
+    assert.equal(await page.locator("#wordPop").getAttribute("aria-modal"),"false");
+    assert.equal(await page.locator("#wordPop h3").textContent(),"glimmer");
+    assert.equal(await page.locator("#wordBackdrop").evaluate(el=>el.classList.contains("on")),false);
+    assert.equal(await page.locator("#wordPop .v11-pron-ipa").textContent(),"/ˈɡlɪmər/");
+    await page.locator("#studyNext").click();
+    assert.equal(await page.locator("#wordPop h3").textContent(),"explore");
+    await page.locator("#wordSave").click();
+    assert.match(await page.locator("#syntheticWordStatus").textContent(),/未写入数据库/);
+    assert.match(await page.locator("#wordSave").textContent(),/已加入/);
+    await page.locator("#wordClose").click();
+    assert.equal(await page.locator("#wordPop").evaluate(el=>el.classList.contains("on")),false);
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth);
+    assert.ok(overflow<=width+1,"PUBLIC-11-05 horizontal overflow "+width+": "+overflow);
+    if(width===390)await page.screenshot({path:join(out,"word-card-390.png"),fullPage:true});
+    assert.deepEqual(errors,[],"Public word-card page error at "+width);
+    console.log("PUBLIC_WORD_CARD_OK",width,"px");
+    await page.close();
+  }
   console.log("PUBLIC_BROWSER_MATRIX_OK "+widths.length+" viewports, synthetic-only");
 } finally {
   if(browser)await browser.close();

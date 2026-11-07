@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-08 · PUBLIC-11-05｜非阻塞词卡展示和学习按钮合同（待验收）
+
+- **来源与范围**：只审阅私人 V1.1 固定 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 的 `app.js` 词卡纯展示合同，**没有复制词义数据、书籍内容、完整词卡缓存、会员/用户/订单/D1 或保存状态的接口**。
+- **公开交付**：新增 `public/word-card-view.js`（`MiaowuWordCardView.create(...).show(...)`）、`showcase/word-card-contract.html/css/js`（三个虚构词汇），使用 DOM 和 textContent 渲染音标、词义、例句、常用搭配、词序、收藏和已掌握按钮。用户只能发送保存或掌握的意图，**结果以私有端确认为准**。
+- **安全/可用性**：移动底部词卡保持非阻塞、无全屏遮罩，可切换其他词，恶意 HTML 文本安全显示；加载/缺失时禁用学习状态操作，关闭后清空高亮；合成 Node 测试和 Chromium 320/390/1440px 回归。
+- **交付包**：公共白名单及 SHA-256 manifest 从 28 增至 29 文件，合成测试与只读差异预检同步调整；**不自动集成到私人 app.js、不触及 Cloudflare 或 D1**。关联 [PUBLIC-11 Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。
+
+
 ### 2026-11-08 · PUBLIC-11-04｜阅读目录/词汇抽屉与释义按钮展示层（已合并）
 
 - **源逻辑**：私人 V1.1 `public/app.js` (参考提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`) 的移动目录抽屉、词汇面板、`toggleGloss/sideToggleGloss`；不再重复之前抽离的日夜主题/阅读字号。
