@@ -7,7 +7,7 @@
 - Real deployment remains in the private repository; this public repo is an **offline component workspace** and does not contain a functioning paid website.
 - Explicitly no private backend code, production D1 credentials, actual activation codes, user records, unpublished novel drafts or reference wordlists were copied.
 
-## Public components migrated (18 files)
+## Public components migrated (24 files)
 
 | Family | Copied paths |
 | --- | --- |
@@ -17,6 +17,8 @@
 | Core learning presentation | `public/flashcards.css`, `public/live-reader.css` |
 | Onboarding and claim presentation | `public/onboarding.css`, `public/claim.css` |
 | Base design styles | `public/styles.css` |
+| Public customer-facing pages | `public/index.html`, `public/updates.html` |
+| Learning UI client modules | `public/flashcards.js`, `public/chapter-words.js`, `public/echo-cloud.js`, `public/onboarding.js` |
 | Book/category illustrations | `public/cat-bookmark-clip.svg`, `public/shelf-cet4.svg`, `public/shelf-cet6.svg`, `public/shelf-ielts.svg`, `public/shelf-postgrad.svg` |
 
 Public UI sample: `showcase/index.html` plus `showcase/demo-api.js` use **synthetic** notices to exercise real UI scripts, with no actual customer API.
@@ -32,7 +34,7 @@ Public UI sample: `showcase/index.html` plus `showcase/demo-api.js` use **synthe
 ## Explicitly excluded from public repo
 
 - `content/**`, `db/**`, `deploy/**`, `src/**`, `pages-production/**`.
-- `public/ops*`, `public/editor*`, `public/claim.js`, `public/app.js`, `public/flashcards.js`, `public/live-reader.js`, `public/novel-file-parser.js`, `public/design-reference-v03.html`.
+- `public/ops*`, `public/editor*`, `public/claim.js`, `public/app.js`, `public/live-reader.js`, `public/novel-file-parser.js`, `public/design-reference-v03.html`.
 - Large image assets or book covers until separate copyright/metadata review.
 - Workflows requiring Cloudflare tokens, test/production D1, manual production publish credentials, or private manuscript inputs.
 
@@ -50,10 +52,16 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 ## Checkpoints
 
 - [x] New public Git history, no private origin mirror.
-- [x] 18 production-derived public presentation/interface files copied through reviewed allowlist.
+- [x] 24 production-derived public presentation/interface files copied through reviewed allowlist.
 - [x] Synthetic preview + independent JavaScript tests + public CI.
 - [ ] Production branch consumes public UI as the authoritative source (awaiting private integration validation).
 - [ ] Private PR / staging workflows fully optimized or isolated (see private policy, requires separate safe change).
 - [ ] Production deployment switched to approved cross-repository release process.
 
 **Boundary:** Public CI success does not establish that a combined private/public release is ready. The private Worker, D1, entitlement, purchase, and content safety gates remain mandatory.
+
+## PUBLIC-10 additional clean snapshot (2026-11-07)
+
+- Six new public-facing UI files taken from private V1.1 commit `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`. Source Git blobs were checked before copying; no private git history was imported.
+- These files are public UI **source snapshots**, not a functioning production deployment. In particular, public `index.html` refers to private `/app.js`, user/account D1 authorization and protected APIs, which remain owned by the private repository. Public `onboarding.js` and review UI only invoke server-side authorization; permission decisions are not migrated.
+- Public delivery manifest grows from 18 to 24 exact allowlisted files. Private app/UI releases must compare complete source SHA and file hashes before staged integration, never silently replace concurrent edits.

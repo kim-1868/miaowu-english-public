@@ -15,7 +15,13 @@ export const PUBLIC_UI_PATHS = Object.freeze([
   "public/onboarding.css", "public/claim.css", "public/styles.css",
   "public/cat-bookmark-clip.svg", "public/shelf-cet4.svg",
   "public/shelf-cet6.svg", "public/shelf-ielts.svg",
-  "public/shelf-postgrad.svg"
+  "public/shelf-postgrad.svg",
+  "public/index.html",
+  "public/updates.html",
+  "public/flashcards.js",
+  "public/chapter-words.js",
+  "public/echo-cloud.js",
+  "public/onboarding.js"
 ]);
 
 const ROOT = resolve(fileURLToPath(new URL("../", import.meta.url)));
@@ -26,7 +32,7 @@ export function packagePublicUi({ outputDir = join(ROOT, "dist-public-ui"), sour
     throw Error("Invalid source commit SHA");
   }
   const distinct = new Set(PUBLIC_UI_PATHS);
-  if (distinct.size !== PUBLIC_UI_PATHS.length || distinct.size !== 18) throw Error("Unexpected UI delivery manifest");
+  if (distinct.size !== PUBLIC_UI_PATHS.length || distinct.size !== 24) throw Error("Unexpected UI delivery manifest");
   const target = resolve(outputDir);
   if (target !== resolve(ROOT, "dist-public-ui") && !target.startsWith(resolve(tmpdir()) + sep)) {
     throw Error("Unsafe output location");

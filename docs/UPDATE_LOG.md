@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-10｜公开首页、历史公告页与四个学习 UI 模块迁移（待 PR 验收）
+
+- 固定私人开发源版本：`0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，逐项审查并干净复制 `public/index.html`、`public/updates.html`、`public/flashcards.js`、`public/chapter-words.js`、`public/echo-cloud.js`、`public/onboarding.js`。
+- 公开前端交付白名单从 18 扩至 24 项；新增浏览器 UI 语法、HTML 模块引用和权限边界的静态合同检查，沿用 SHA-256 构建交付及只读差异预检。
+- 所有服务器端权限/订单/激活/运营后台/小说/词库仍留私人；公共首页依赖私人 `/app.js`，**不可能仅凭公开包独立上线**。私人活动分支不做代码替换。
+- 关联 [Issue #16](https://github.com/kim-1868/miaowu-english-public/issues/16)，本条待公共 PR/Actions 验收后补写准确版本。
+
+
 ### 2026-11-07 · CI-COST-02｜私人预览测试-only 更新不再重复部署
 
 - 私人 [PR #189](https://github.com/kim-1868/miaowu-english/pull/189) 已合并到 V1.1 活动分支，提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`。
