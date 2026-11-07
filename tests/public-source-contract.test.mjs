@@ -11,7 +11,7 @@ const imported=[
 
 test("six newly public browser files have an explicit reviewed release entry",()=>{
  for(const p of imported) assert.ok(PUBLIC_UI_PATHS.includes(p),p);
- assert.equal(PUBLIC_UI_PATHS.length,27);
+ assert.equal(PUBLIC_UI_PATHS.length,28);
 });
 
 test("homepage HTML is presentation shell; authentication code is not copied",()=>{
