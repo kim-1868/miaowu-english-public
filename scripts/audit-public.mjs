@@ -40,6 +40,8 @@ export const APPROVED_PATHS = new Set([
   "public/claim.css",
   "scripts/audit-public.mjs",
   "scripts/serve.mjs",
+  "scripts/build-public-ui.mjs",
+  "tests/public-bundle.test.mjs",
   "tests/public-ui.test.mjs",
   "tests/announcement-regression.test.mjs",
   "tests/boundary.test.mjs",
