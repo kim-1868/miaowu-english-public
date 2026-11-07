@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 
 export const APPROVED_PATHS = new Set([
   ".github/workflows/public-guard.yml",
+  ".github/workflows/public-browser-qa.yml",
   ".gitignore",
   "README.md",
   "package.json",
@@ -43,6 +44,7 @@ export const APPROVED_PATHS = new Set([
   "scripts/audit-public.mjs",
   "scripts/serve.mjs",
   "scripts/build-public-ui.mjs",
+  "scripts/verify-public-ui-browser.mjs",
   "tests/public-bundle.test.mjs",
   "tests/public-ui.test.mjs",
   "tests/announcement-regression.test.mjs",

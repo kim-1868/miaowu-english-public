@@ -1,0 +1,47 @@
+name: Public synthetic UI Chromium screen matrix
+
+on:
+  pull_request:
+    paths:
+      - 'public/**'
+      - 'showcase/**'
+      - 'scripts/verify-public-ui-browser.mjs'
+      - '.github/workflows/public-browser-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromium-ui-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit public files and run offline UI tests first
+        run: |
+          npm run check
+          npm test
+      - name: Install isolated Playwright 1.56.1 on supported Ubuntu 24.04
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Real Chromium phone/tablet/desktop, touch controls and night contrast
+        run: node scripts/verify-public-ui-browser.mjs
+      - name: Save synthetic-only screenshots for manual inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-ui-browser-${{ github.sha }}
+          path: ui-qa-screenshots/
+          if-no-files-found: ignore
+          retention-days: 7
