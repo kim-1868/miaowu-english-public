@@ -1,0 +1,16 @@
+:root{color-scheme:light;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+body{min-width:280px;margin:0;background:#f8f3ec;color:#5d3e4c}
+.demo-container{width:min(1220px,calc(100% - 26px));margin:auto;padding:23px 0 60px}
+.demo-container>h1{margin:15px 0 8px;font:normal 29px/1.4 "Songti SC",serif}
+.demo-container>p{font-size:14px;line-height:1.7}
+.demo-container a{color:#81505a}
+.demo-container .home-shelf-layout{display:block;min-width:0}
+.demo-container .book-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;min-width:0}
+.demo-container .cloud-book-item{min-width:0;overflow:hidden}
+.demo-container .cloud-book-item .book-cover{min-width:0}
+.demo-container .cloud-book-item .book-cover h3{overflow-wrap:anywhere}
+.demo-container .cloud-book-item button{min-height:44px}
+.demo-notice{padding:15px;background:#fff9f1;border:1px solid #dec9bb;border-radius:12px}
+.demo-footnote{opacity:.8}
+@media(max-width:850px){.demo-container .book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.demo-container .book-grid{grid-template-columns:minmax(0,1fr)}.demo-container .cloud-book-item{grid-template-columns:38% minmax(0,1fr)!important;gap:10px!important;padding:10px!important}.demo-container .cloud-book-item .book-cover{min-height:0!important}.demo-container .cloud-book-item .book-info{min-width:0;padding:2px 0}.demo-container .cloud-book-item .book-actions{display:flex;gap:6px;flex-wrap:wrap}.demo-container .cloud-book-item .book-actions button{font-size:11px}}

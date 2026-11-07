@@ -76,3 +76,10 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 
 
 **PUBLIC-11-02 核验里程碑**：现在的公共交付包包含 26 个文件，其中最初迁入的 24 个文件单独在前文列出，新增 2 个公开纯 UI 组件为 `reader-preferences.js` 与 `shelf-pagination.js`；[PR #20](https://github.com/kim-1868/miaowu-english-public/pull/20) 合并提交 `bc3de0fe82c275204d26c5a2ffa1f4800e7ac6a3`，公共浏览器测试及主分支构建全部通过，Artifact ID `13580371015`。私人参考 26 文件对照结果：20 相同、4 个已知差异、2 个公共新增文件待集成，不应把此结果误读为私人代码缺少应上线的核心功能。
+
+
+## PUBLIC-11-03 新增书架卡片展示模块（2026-11-08）
+
+- `public/shelf-card.js` 为**在公共仓库独立重构的前端展示组件**（来源仅为私人 V1.1 `app.js` 对客户可见布局的审阅），不是从私人仓库迁移完整 `app.js`。
+- 只允许注入合成书籍或私人前端已经得到授权/筛选的数据；不负责核验 `entitled`、`hasProgress`、`bookmarked` 等值，更不向 D1 写入。
+- 对应公开合成演示、Node 注入过滤/按钮回调测试和 Chromium 手机/电脑测试。所有 27 个文件通过公共构建后再交付私人候选整合阶段，未经签核不会自动部署。

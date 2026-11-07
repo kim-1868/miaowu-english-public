@@ -148,6 +148,31 @@ try {
     assert.deepEqual(errors,[],"Public shelf page runtime errors at "+width);
     await page.close();
   }
+  // PUBLIC-11-03: real Chromium smoke test of safe DOM-based shelf cards.
+  for(const width of [320,390,1440]){
+    const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+    const errors=[];page.on("pageerror",e=>errors.push(e.message));
+    await page.route("**/*",route=>{
+      if(route.request().url().startsWith("http://127.0.0.1:4173/"))route.continue();
+      else route.abort();
+    });
+    const res=await page.goto("http://127.0.0.1:4173/showcase/shelf-card-contract.html",{waitUntil:"networkidle"});
+    assert.equal(res.status(),200);
+    assert.equal(await page.locator(".cloud-book-item").count(),3);
+    assert.equal(await page.locator(".cloud-book-item .cover-custom-tag").count(),4);
+    assert.equal(await page.locator(".cloud-book-item").nth(2).locator(".book-tag").textContent(),"会员专享");
+    await page.locator(".cloud-book-item").first().locator(".book-actions .primary").click();
+    assert.match(await page.locator("#syntheticCardStatus").textContent(),/月光邮局/);
+    await page.locator(".cloud-book-item").nth(1).locator(".cloud-bookmark-button").click();
+    assert.match(await page.locator("#syntheticCardStatus").textContent(),/雾港来信/);
+    assert.equal(await page.locator(".cloud-book-item").nth(1).locator(".cloud-bookmark-button").getAttribute("aria-pressed"),"true");
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth);
+    assert.ok(overflow<=width+1,"PUBLIC-11-03 horizontal overflow "+width+" -> "+overflow);
+    if(width===390)await page.screenshot({path:join(out,"shelf-card-390.png"),fullPage:true});
+    assert.deepEqual(errors,[],"Shelf card browser errors at "+width);
+    console.log("PUBLIC_SHELF_CARD_OK",width,"px");
+    await page.close();
+  }
   console.log("PUBLIC_BROWSER_MATRIX_OK "+widths.length+" viewports, synthetic-only");
 } finally {
   if(browser)await browser.close();
