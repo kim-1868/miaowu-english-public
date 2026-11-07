@@ -7,7 +7,7 @@
 - Real deployment remains in the private repository; this public repo is an **offline component workspace** and does not contain a functioning paid website.
 - Explicitly no private backend code, production D1 credentials, actual activation codes, user records, unpublished novel drafts or reference wordlists were copied.
 
-## Public components migrated (12 files)
+## Public components migrated (18 files)
 
 | Family | Copied paths |
 | --- | --- |
@@ -16,6 +16,8 @@
 | Reader / shelf / word cards | `public/v11-reader.css`, `public/v11-bookshelf.css`, `public/v11-wordbook.css`, `public/v11-responsive.css` |
 | Core learning presentation | `public/flashcards.css`, `public/live-reader.css` |
 | Onboarding and claim presentation | `public/onboarding.css`, `public/claim.css` |
+| Base design styles | `public/styles.css` |
+| Book/category illustrations | `public/cat-bookmark-clip.svg`, `public/shelf-cet4.svg`, `public/shelf-cet6.svg`, `public/shelf-ielts.svg`, `public/shelf-postgrad.svg` |
 
 Public UI sample: `showcase/index.html` plus `showcase/demo-api.js` use **synthetic** notices to exercise real UI scripts, with no actual customer API.
 
@@ -48,7 +50,7 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 ## Checkpoints
 
 - [x] New public Git history, no private origin mirror.
-- [x] 12 production-derived public presentation/interface files copied through reviewed allowlist.
+- [x] 18 production-derived public presentation/interface files copied through reviewed allowlist.
 - [x] Synthetic preview + independent JavaScript tests + public CI.
 - [ ] Production branch consumes public UI as the authoritative source (awaiting private integration validation).
 - [ ] Private PR / staging workflows fully optimized or isolated (see private policy, requires separate safe change).
