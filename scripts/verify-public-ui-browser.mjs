@@ -173,6 +173,38 @@ try {
     console.log("PUBLIC_SHELF_CARD_OK",width,"px");
     await page.close();
   }
+  // PUBLIC-11-04: synthetic reader toolbar drawers/gloss controls (no private API).
+  for(const width of [320,390,1440]){
+    const page=await browser.newPage({viewport:{width,height:920},deviceScaleFactor:1});
+    const errors=[];page.on("pageerror",e=>errors.push(e.message));
+    await page.route("**/*",route=>{
+      if(route.request().url().startsWith("http://127.0.0.1:4173/"))route.continue();
+      else route.abort();
+    });
+    const res=await page.goto("http://127.0.0.1:4173/showcase/reader-panels-contract.html",{waitUntil:"networkidle"});
+    assert.equal(res.status(),200);
+    const chapter=page.locator("#mobileChapterOpen"),vocab=page.locator("#mobileVocabOpen");
+    await chapter.click();
+    assert.equal(await page.locator("#readerLayout").evaluate(el=>el.classList.contains("chapter-drawer-open")),true);
+    assert.equal(await chapter.getAttribute("aria-expanded"),"true");
+    if(width<=980) await page.locator("#mobileChapterClose").click();
+    else await chapter.click(); // Desktop drawers have no visible mobile close button.
+    assert.equal(await chapter.getAttribute("aria-expanded"),"false");
+    await vocab.click();
+    assert.equal(await vocab.getAttribute("aria-expanded"),"true");
+    await page.keyboard.press("Escape");
+    assert.equal(await vocab.getAttribute("aria-expanded"),"false");
+    await page.locator("#toggleGloss").click();
+    assert.equal(await page.locator("#storyText").evaluate(el=>el.classList.contains("no-gloss")),true);
+    assert.equal(await page.locator("#sideToggleGloss").getAttribute("aria-pressed"),"true");
+    assert.match(await page.locator("#readerPanelsStatus").textContent(),/已隐藏释义/);
+    const scrollWidth=await page.evaluate(()=>document.documentElement.scrollWidth);
+    assert.ok(scrollWidth<=width+1,"PUBLIC-11-04 horizontal overflow "+width+": "+scrollWidth);
+    if(width===390)await page.screenshot({path:join(out,"reader-panels-390.png"),fullPage:true});
+    assert.deepEqual(errors,[],"Public reader toolbar errors at "+width);
+    console.log("PUBLIC_READER_PANELS_OK",width,"px");
+    await page.close();
+  }
   console.log("PUBLIC_BROWSER_MATRIX_OK "+widths.length+" viewports, synthetic-only");
 } finally {
   if(browser)await browser.close();

@@ -157,3 +157,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 15. PUBLIC-11-03 验收结果（2026-11-08）
 
 [PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21) 已合并公共 `main`，版本 `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`。验证 [Node 42390538871](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390538871)、[Chromium 42390538839](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390538839)、[主分支 42390644374](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390644374) 全部成功，27 文件 Artifact ID `13580754886`。固定私人对照：20 个同 SHA、4 个待合并差异、3 个全新公共 UI 文件；未影响同步开发中的私人站点。
+
+
+## 16. PUBLIC-11-04 阅读面板纯 UI 抽离（2026-11-08）
+
+独立公共模块 `reader-panels.js` 仅实现目录/词汇抽屉、释义显示与关闭行为，使用同名 DOM ID/原 CSS class；不复制私有源代码的业务/音频内容。公共合成 Node + Chromium 验证完成后由公共仓库交付固定 SHA 28 文件包，私人站需要消除旧事件处理后再整合，继续保护同步开发。

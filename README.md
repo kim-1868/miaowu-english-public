@@ -97,3 +97,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-03 完成记录（2026-11-08）
 
 书架卡片显示层 [PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21) 已通过 Node、合成 Chromium 与 main 构建，交付包固定 SHA `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`，27 文件、Artifact ID `13580754886`。与私人 V1.1 同路径对照：20 一致、4 个公共改动待评估、3 个新公共组件在私人仍无同名文件。真实用户授权、小说内容和收藏结果必须由私人端处理；本轮无线上部署。
+
+## PUBLIC-11-04：纯展示阅读工具栏模块
+
+公共 `public/reader-panels.js` 通过 `MiaowuReaderPanels.create({document,onGlossChange}).mount()` 提供目录/词汇面板互斥开关、键盘 Esc/遮罩关闭、ARIA 状态与释义可见性切换。它不包含朗读、阅读进度、会员检查或私有 API；不和已有 `reader-preferences.js` 重复负责字体/主题。见 [合成阅读工具栏预览](showcase/reader-panels-contract.html)。私人原 `app.js` 仍运行，尚未集成到正式站。

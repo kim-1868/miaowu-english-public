@@ -84,3 +84,10 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 - 只允许注入合成书籍或私人前端已经得到授权/筛选的数据；不负责核验 `entitled`、`hasProgress`、`bookmarked` 等值，更不向 D1 写入。
 - 对应公开合成演示、Node 注入过滤/按钮回调测试和 Chromium 手机/电脑测试。所有 27 个文件通过公共构建后再交付私人候选整合阶段，未经签核不会自动部署。
 - **验收已完成**：公共 [PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21)、合并 SHA `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`，Node CI `42390538871`、Chromium `42390538839`、main 构建 `42390644374` 均成功。27 文件 Artifact ID `13580754886`；私人参考基线 20 一致、4 差异、3 公共新增，不涉及私人部署。
+
+
+## PUBLIC-11-04 新建阅读工具栏合成组件（2026-11-08）
+
+- `public/reader-panels.js`：只有页面层的章节抽屉、词汇抽屉、释义显示，CSS/ARIA 状态由本组件同步。真实书籍列表、章节权限、词汇拉取、朗读引擎、保存阅读进度仍全部在私人仓库。
+- 该公共独立组件无自动安装逻辑。现有私人 `app.js` 继续是用户网站入口，未来需受控替换旧 `onclick` 与相关状态，避免重复事件和回归问题。
+- 公共白名单/构建包从 27 升到 28 个文件；测试及最终 SHA 将在通过 Actions 后补记。

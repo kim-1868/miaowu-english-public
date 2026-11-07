@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>妙屋英语｜阅读工具栏合成演示</title>
+<link rel="stylesheet" href="../public/styles.css">
+<link rel="stylesheet" href="../public/v11-reader.css">
+<link rel="stylesheet" href="../public/v11-responsive.css">
+<link rel="stylesheet" href="./reader-panels-contract.css">
+<script defer src="../public/reader-panels.js"></script>
+<script defer src="./reader-panels-demo.js"></script>
+</head><body>
+<div class="demo-page">
+<header class="demo-header"><a href="./index.html">← 公共组件</a><h1>妙屋英语 · 阅读工具栏</h1><p>PUBLIC-11-04｜目录、词汇侧栏与释义显示（完全合成内容）</p></header>
+<section id="view-reader" class="view">
+<div class="reader-layout" id="readerLayout">
+<aside class="sidebar">
+  <div class="side-panel">
+    <button id="mobileChapterClose" type="button" class="mobile-chapter-close" aria-label="关闭目录">×</button>
+    <h3 id="chapterListTitle">故事目录</h3>
+    <div id="chapterList"><button type="button" class="chapter-btn">第 01 章 · 合成故事</button><button type="button" class="chapter-btn">第 02 章 · 合成故事</button></div>
+  </div>
+</aside>
+<article class="reading-panel">
+  <div class="read-top">
+    <span class="crumb">示例书架 / 阅读</span>
+    <div class="tool-row">
+      <button type="button" class="icon-btn mobile-chapter-open" id="mobileChapterOpen" aria-expanded="false" aria-controls="chapterList" aria-label="打开章节目录">☷ 目录</button>
+      <button type="button" class="icon-btn mobile-vocab-open" id="mobileVocabOpen" aria-expanded="false" aria-controls="chapterVocabPanel" aria-label="展开本章词汇">▤ 词汇</button>
+      <button type="button" class="icon-btn" id="toggleGloss" aria-pressed="false" aria-label="隐藏释义">译 · 释义</button>
+      <button type="button" class="icon-btn" id="sideToggleGloss" aria-pressed="false" aria-label="隐藏释义">侧栏释义</button>
+    </div>
+  </div>
+  <div class="story-text" id="storyText"><p>门外响起了 <strong>knock</strong><span class="gloss">（敲门声）</span>，她打开一封 <strong>letter</strong><span class="gloss">（信）</span>。</p></div>
+  <p class="demo-status" id="readerPanelsStatus" role="status" aria-live="polite">这是纯视图演示；不操作真实小说、朗读或学习记录。</p>
+</article>
+<aside class="sidebar">
+  <div class="side-panel chapter-vocab-panel" id="chapterVocabPanel">
+    <button id="mobileVocabClose" type="button" class="mobile-vocab-close" aria-label="收起本章词汇">×</button>
+    <h3>本章目标词（虚构）</h3><p>knock · letter · window</p>
+  </div>
+</aside>
+<div id="readerDrawerOverlay" class="reader-drawer-overlay" aria-hidden="true"></div>
+</div></section>
+<p class="demo-footnote">目录与词汇按钮只切换 DOM 面板。释义隐藏只影响 CSS，权限和真实章节由私人服务端负责。</p>
+</div></body></html>

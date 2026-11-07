@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-08 · PUBLIC-11-04｜阅读目录/词汇抽屉与释义按钮展示层（待验收）
+
+- **源逻辑**：私人 V1.1 `public/app.js` (参考提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`) 的移动目录抽屉、词汇面板、`toggleGloss/sideToggleGloss`；不再重复之前抽离的日夜主题/阅读字号。
+- **公共交付**：新建 `public/reader-panels.js`，处理抽屉互斥开闭、遮罩点击、Esc、焦点与 `aria-expanded`；释义显示/隐藏仅修改 CSS class 并可通过注入回调给私人 UI 提示。新建 `showcase/reader-panels-contract.html/css/js` 合成阅读工具栏演示。
+- **自动测试**：`tests/public-reader-panels.test.mjs` 覆盖关闭状态同步、键盘焦点、重复绑定、无网络/业务状态；公共 Chromium 在 320/390/1440px 检查真实点击和横向溢出，交付包 27→28 个精确白名单文件。
+- **边界**：该模块**未安装到私人站点**；私人章节权限、朗读、章节词汇获取、学习进度/D1 及运营均不迁入公共。未来需审阅最新 `app.js` 后移除旧重复监听再私有整合。
+
+
 ### 2026-11-08 · PUBLIC-11-03｜书架卡片纯展示组件（已完成）
 
 - **来源**：审阅私人 V1.1 提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 中的 `public/app.js` 书架卡片展示区域（不迁移 `loadCloudBookCards` 中的接口查询、授权或状态持久化）。
