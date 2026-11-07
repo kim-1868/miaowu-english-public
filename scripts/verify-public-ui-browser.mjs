@@ -187,7 +187,8 @@ try {
     await chapter.click();
     assert.equal(await page.locator("#readerLayout").evaluate(el=>el.classList.contains("chapter-drawer-open")),true);
     assert.equal(await chapter.getAttribute("aria-expanded"),"true");
-    await page.locator("#mobileChapterClose").click();
+    if(width<=980) await page.locator("#mobileChapterClose").click();
+    else await chapter.click(); // Desktop drawers have no visible mobile close button.
     assert.equal(await chapter.getAttribute("aria-expanded"),"false");
     await vocab.click();
     assert.equal(await vocab.getAttribute("aria-expanded"),"true");
