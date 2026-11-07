@@ -19,6 +19,7 @@ export const APPROVED_PATHS = new Set([
   "showcase/responsive-contract.css",
   "showcase/responsive-contract.js",
   "tests/responsive-layout.test.mjs",
+  "tests/workflow-triggers.test.mjs",
   "public/install-guide.js",
   "public/install-guide.css",
   "public/site-updates.js",
