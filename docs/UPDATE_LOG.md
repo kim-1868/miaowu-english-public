@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-08 · PUBLIC-SF-W3｜多模型连续章节合成安全契约
+
+- 新增 `scripts/story-provider-contract.mjs` 与公共测试：Codex/Claude/Gemini 三个确定适配器、已保存章节连续性、跨模型单章已尝试阻断、1–8章及1–20分钟预算上限和不可发布状态。
+- 严格使用匿名虚构章节序号，没有真实小说、词库、模型凭证、访问令牌、CLI 调用、D1 或出版操作。
+- 与私人 `w3_provider_scheduler.py` 的职责分离：公共回归只验证通用约束；私人本机引擎负责真正 CLI 调用及语义审核；不触及已冻结的 V1.1 网站。
+- 此项待公共 PR Node Actions 成功并合并后填写结果。
+
+
 ### 2026-11-08 · PUBLIC-DEV-CORE-WAVE1｜3 个纯逻辑组件迁入公共开发测试（完成）
 
 - 从私人 V1.1 固定提交仅审阅并逐文件复制 `public/novel-file-parser.js`、`src/editorial-code-switch-lint.js`、`src/spaced-review.js`；代码 Git blob 与私人一致，不携带其 Git 历史。
