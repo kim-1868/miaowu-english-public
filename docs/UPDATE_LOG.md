@@ -4,12 +4,14 @@
 
 ## 更新记录
 
-### 2026-11-08 · PUBLIC-11-03｜书架卡片纯展示组件（待验收）
+### 2026-11-08 · PUBLIC-11-03｜书架卡片纯展示组件（已完成）
 
 - **来源**：审阅私人 V1.1 提交 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4` 中的 `public/app.js` 书架卡片展示区域（不迁移 `loadCloudBookCards` 中的接口查询、授权或状态持久化）。
 - **新增**：公共 `public/shelf-card.js`，使用 `document.createElement` 和 `textContent` 创建书籍封面、合法标签、会员显示文案、进度占位和收藏/阅读按钮，回调完全由私有业务方注入。非法封面 URL、标签颜色过滤；收藏不进行乐观写入。
 - **验证**：新增 `tests/public-shelf-card.test.mjs` 覆盖 HTML 注入、非法封面、回调/收藏状态、权益显示、长度边界；`showcase/shelf-card-contract.html/css/js` 为虚构书籍；公共 Chromium 增加 320/390/1440px 真实交互检查。
 - **交付包**：精确白名单 26→27 个文件，继续采用 SHA-256 和只读差异预检；**不触碰私人运行站、D1 或 Cloudflare，不导入真实书籍数据**。对应 PUBLIC-11 [Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。
+- **最终验收**：[公共 PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21) 已 Squash 合并到公共 `main`，提交 `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`。修复旧 26 文件断言后 [Node 功能及安全检查 42390538871](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390538871)、[真实 Chromium 合成 UI 验收 42390538839](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390538839)、[合并后主分支构建 42390644374](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390644374) 全部通过。
+- **版本与边界**：27 文件交付包 `wordletter-public-ui-d8ea09f154d5e3a35787267ae886b1dd066a2eb3`（Artifact ID `13580754886`）；对照私人 V1.1 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，20 个 SHA 相同、4 个公共版本有差异、3 个新增公共组件尚未安装。**私人正常开发与预览/正式发布没有改变。**
 
 
 ### 2026-11-07 · PUBLIC-11-02｜从私人 app.js 拆分纯 DOM 书架分页组件（已合并）

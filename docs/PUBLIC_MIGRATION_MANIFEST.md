@@ -83,3 +83,4 @@ Exclusion does **not** mean these scripts are inherently unsafe; it means they h
 - `public/shelf-card.js` 为**在公共仓库独立重构的前端展示组件**（来源仅为私人 V1.1 `app.js` 对客户可见布局的审阅），不是从私人仓库迁移完整 `app.js`。
 - 只允许注入合成书籍或私人前端已经得到授权/筛选的数据；不负责核验 `entitled`、`hasProgress`、`bookmarked` 等值，更不向 D1 写入。
 - 对应公开合成演示、Node 注入过滤/按钮回调测试和 Chromium 手机/电脑测试。所有 27 个文件通过公共构建后再交付私人候选整合阶段，未经签核不会自动部署。
+- **验收已完成**：公共 [PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21)、合并 SHA `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`，Node CI `42390538871`、Chromium `42390538839`、main 构建 `42390644374` 均成功。27 文件 Artifact ID `13580754886`；私人参考基线 20 一致、4 差异、3 公共新增，不涉及私人部署。

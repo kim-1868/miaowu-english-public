@@ -152,3 +152,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 14. PUBLIC-11-03 公开书架卡片展示组件（2026-11-08）
 
 在公共分支 `feature/public11-shelf-card-20261108` 新建纯 DOM 书架卡片渲染器，以用户可见样式作为合同，只接收调用方传入的标签、封面/权益显示状态、进度占位和按钮回调。公共 Chromium 用三本虚构书籍验证 320/390/1440px。私有 `app.js`、查询、付费墙、保存记录、Cloudflare 均未更动，需私人候选整合时消除旧逻辑重复后再上线。
+
+
+## 15. PUBLIC-11-03 验收结果（2026-11-08）
+
+[PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21) 已合并公共 `main`，版本 `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`。验证 [Node 42390538871](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390538871)、[Chromium 42390538839](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390538839)、[主分支 42390644374](https://github.com/kim-1868/miaowu-english-public/actions/runs/42390644374) 全部成功，27 文件 Artifact ID `13580754886`。固定私人对照：20 个同 SHA、4 个待合并差异、3 个全新公共 UI 文件；未影响同步开发中的私人站点。

@@ -4,7 +4,7 @@
 
 ## 本次已落地
 
-- 当前交付包有 **26 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 2 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
+- 当前交付包有 **27 个白名单审核的公开前端文件**：24 个来自固定私人 V1.1 快照，另有 3 个在公共仓库独立拆分的纯 UI 组件；不复制私人 Git 历史。
 - 网站公告及历史记录、手机桌面安装教程保留了原 V1.1 公共端 JS，并且通过了合成数据下的交互测试。
 - 新建 `showcase/index.html`：使用真实组件 + 合成公告展示效果，绝不访问生产 D1、用户订单、小说或词库。
 - `npm run check` 包含精确文件白名单、常见密钥特征与 JS 语法检查，`npm test` 用 Node 22 内置测试验证基本行为。
@@ -93,3 +93,7 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-11-03：书架卡片纯前端渲染
 
 新增公共 `public/shelf-card.js`：`MiaowuShelfCard.create({document}).render({book,index,category,entitled,hasProgress,bookmarked,coverUrl,onOpen,onBookmarkToggle})`。只负责 DOM 和回调，不读取真实付费章节、运营数据或用户书架；展示当前客户端的封面、半透明标签、进度占位、会员提示和收藏按钮。见 [合成书架卡片演示](showcase/shelf-card-contract.html)。**当前私人 app.js 仍独立运行，此模块不是已上线更新。**
+
+## PUBLIC-11-03 完成记录（2026-11-08）
+
+书架卡片显示层 [PR #21](https://github.com/kim-1868/miaowu-english-public/pull/21) 已通过 Node、合成 Chromium 与 main 构建，交付包固定 SHA `d8ea09f154d5e3a35787267ae886b1dd066a2eb3`，27 文件、Artifact ID `13580754886`。与私人 V1.1 同路径对照：20 一致、4 个公共改动待评估、3 个新公共组件在私人仍无同名文件。真实用户授权、小说内容和收藏结果必须由私人端处理；本轮无线上部署。
