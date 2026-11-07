@@ -1,0 +1,12 @@
+{
+  "name": "miaowu-english-public-ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "check": "node --check public/install-guide.js && node --check public/site-updates.js && node --check showcase/demo-api.js && node --check scripts/audit-public.mjs && node --check scripts/serve.mjs && node scripts/audit-public.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "dev": "node scripts/serve.mjs"
+  }
+}
