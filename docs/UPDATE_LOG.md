@@ -4,11 +4,20 @@
 
 ## 更新记录
 
-### 2026-11-07 · PUBLIC-07｜公开 UI 的真实 Chromium 浏览器验证（进行中）
+### 2026-11-07 · PUBLIC-08｜公开 UI 的 Chromium 多屏宽验证（PR 待验收）
 
-- 将不包含私人内容的多屏宽浏览器验证放到公共标准 GitHub Actions。使用 `ubuntu-24.04`、Playwright 1.56.1，检查 320/375/390/430/768/1024/1440px 布局、44px 移动端触控区、字号 12–24px、夜读正文对比、无横向溢出。
-- 仅访问本地 `showcase/responsive-contract.html` 合成测试页面，生成公开测试截图 artifact；不访问正式站、订单、词库或任何私有数据。公共 PR 对前端更新自动执行，私人候选站只在正式整合时进行完整验收。
-- 关联 [Issue #12](https://github.com/kim-1868/miaowu-english-public/issues/12)。PR、实际运行结果和合并 SHA 后续追加。
+- 在公共标准 GitHub Actions 使用支持 Playwright 1.56.1 的 Ubuntu 24.04，针对完全虚构的书架/阅读器/词卡做真实 Chromium 布局检查，不使用私人数据库或 Cloudflare 密钥。
+- 手机 320/375/390/430px、平板 768px、电脑 1024/1440px，验证无横向溢出、移动触控区、字号 12–24px、日/夜模式对比，并上传人工合成截图供审核。
+- 关联 [Issue #12](https://github.com/kim-1868/miaowu-english-public/issues/12) 与 [PR #13](https://github.com/kim-1868/miaowu-english-public/pull/13)；本 PR 不触碰私人站，也不部署 Cloudflare。正式 Actions 验证结果待补。
+
+
+### 2026-11-07 · PUBLIC-07｜小说标注结构的公开合成测试（公共 CI 已通过并合并）
+
+- **位置**：公共独立分支 `feature/public07-synthetic-annotation-guard-20261107`，不触碰私人开发分支。
+- **改动**：新增 `scripts/annotation-contract.mjs`、`tests/annotation-contract.test.mjs`；扩展 `scripts/audit-public.mjs` 的精确白名单、`package.json` 的 JS 语法检查。
+- **内容**：用虚构样本验证跨章节重复 ID、未知词卡引用、空白文本、空释义、混合片段，并提供标注数量/实际使用 ID 的统计；不包含真实小说、词库、源站 API 或生产凭据。
+- **验证**：6 个 Node 单元测试通过；公共 PR #11 的 GitHub Actions 运行 42384365445 已成功。**这只验证格式引用，不验证词义自然或可上架**。
+- **合并**：[公共 PR #11](https://github.com/kim-1868/miaowu-english-public/pull/11) 已 squash 合并，公共提交 `ff09906fe709dc14683f8c43feecdf9f4a6b4ba4`。**生产影响**：无。没有修改正式/预览站、D1、用户学习记录及付费系统，也没有部署。
 
 
 ### 2026-11-07 · PUBLIC-06｜公开前端构建/交付迁移（进行中）
