@@ -4,12 +4,14 @@
 
 ## 更新记录
 
-### 2026-11-08 · PUBLIC-DEV-CORE-WAVE1｜3 个纯逻辑组件迁入公共开发测试（待公共 PR 验收）
+### 2026-11-08 · PUBLIC-DEV-CORE-WAVE1｜3 个纯逻辑组件迁入公共开发测试（完成）
 
 - 从私人 V1.1 固定提交仅审阅并逐文件复制 `public/novel-file-parser.js`、`src/editorial-code-switch-lint.js`、`src/spaced-review.js`；代码 Git blob 与私人一致，不携带其 Git 历史。
 - `tests/public-dev-core-wave1.test.mjs` 以虚构小说、合成单词验证 parser/候选标签、中文夹英文词性风险、跨日复习 1/3/7/14/30 天与同日不重复延后；静态保证无数据库/API/Secrets。
 - 扩增公共审计白名单/语法检查/Node 测试；**29 个公共 UI 交付包保持不变**。公共 Build 仍只公开已审的 UI 文件，不额外包含商业词库/真实小说。
 - 具体来源和安全边界：`docs/PUBLIC_DEV_CORE_WAVE1_20261108.md`。不合并或修改私人活动分支、不改 D1/Cloudflare、尚未上线新算法。
+- **本批已正式合并公共仓库**：[PR #30](https://github.com/kim-1868/miaowu-english-public/pull/30) Squash 合并提交 `9b1157f5e2ab7b8bdbaff72f6c6e796416bfb686`；[PR Node CI #42401829724](https://github.com/kim-1868/miaowu-english-public/actions/runs/42401829724)、[PR Chromium #42401829635](https://github.com/kim-1868/miaowu-english-public/actions/runs/42401829635)、[主分支 CI #42401931687](https://github.com/kim-1868/miaowu-english-public/actions/runs/42401931687) 全部成功。逐文件核对源 Git blob 与私人固定 SHA 完全一致。29 文件公共 UI Release 白名单**不变**，主分支 Artifact `wordletter-public-ui-9b1157f5e2ab7b8bdbaff72f6c6e796416bfb686`（ID `13585926397`）。
+- **未完成事项**：更大的公共纯逻辑迁移仍需逐文件审查；本批没有执行私人业务验收、没有替换私人书架/复习/出版运行代码、没有发布新的 GitHub Release、更没有部署预览或正式站。
 
 
 ### 2026-11-08 · PUBLIC-SF-W1｜小说工厂工作台 W1 公共合成演示（候选）
