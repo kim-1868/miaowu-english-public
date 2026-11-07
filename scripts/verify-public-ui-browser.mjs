@@ -127,6 +127,27 @@ try {
     console.log("PUBLIC_READER_CONTROLS_OK",width,"px");
     await page.close();
   }
+  // PUBLIC-11-02: run independent pure shelf pagination interactions.
+  for(const width of [320,390,1440]){
+    const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+    const errors=[];page.on("pageerror",e=>errors.push(e.message));
+    await page.route("**/*",route=>{
+      if(route.request().url().startsWith("http://127.0.0.1:4173/"))route.continue();
+      else route.abort();
+    });
+    const response=await page.goto("http://127.0.0.1:4173/showcase/shelf-pagination-contract.html",{waitUntil:"networkidle"});
+    assert.equal(response.status(),200);
+    assert.equal(await page.locator("#syntheticPage").textContent(),"当前第 1 页");
+    assert.equal(await page.locator(".shelf-pagination").getAttribute("aria-label"),"小说书架分页");
+    await page.getByRole("button",{name:"下一页小说"}).click();
+    assert.equal(await page.locator("#syntheticPage").textContent(),"当前第 2 页");
+    assert.equal(await page.locator(".shelf-page-button[aria-current='page']").textContent(),"2");
+    const w=await page.evaluate(()=>document.documentElement.scrollWidth);
+    assert.ok(w<=width+1,"PUBLIC-11-02 horizontal overflow "+width+" -> "+w);
+    if(width===390)await page.screenshot({path:join(out,"shelf-pagination-390.png"),fullPage:true});
+    assert.deepEqual(errors,[],"Public shelf page runtime errors at "+width);
+    await page.close();
+  }
   console.log("PUBLIC_BROWSER_MATRIX_OK "+widths.length+" viewports, synthetic-only");
 } finally {
   if(browser)await browser.close();

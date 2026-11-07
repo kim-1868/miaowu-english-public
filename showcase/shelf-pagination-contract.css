@@ -1,0 +1,11 @@
+.demo-wrap{width:min(980px,calc(100% - 26px));margin:0 auto;padding:24px 0 55px;color:#543849}
+.demo-wrap h1{font:normal 30px "Songti SC",serif;margin:18px 0 6px}.demo-wrap header p,.demo-note{font-size:13px;line-height:1.8}
+.demo-wrap .home-shelf-layout{padding:16px;background:#fffaf6;border:1px solid #e1ccc3;border-radius:15px;min-width:0}
+.demo-wrap #selectedCategoryTitle{margin:10px 0 8px;font:normal 22px "Songti SC",serif}
+.demo-wrap #syntheticPage{font-size:13px;margin:5px 0 15px}
+.demo-wrap .demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:0}
+.demo-wrap .demo-book{min-width:0;border:1px solid #e2d3c8;padding:18px;border-radius:13px;background:#fff;display:flex;flex-direction:column;gap:6px}
+.demo-wrap .demo-book span{font-size:38px}.demo-wrap .demo-book strong{font-size:17px;overflow-wrap:anywhere}
+.demo-wrap .shelf-pagination{grid-column:1/-1}
+.demo-wrap .shelf-page-button{min-height:44px;min-width:44px}
+@media(max-width:600px){.demo-wrap .demo-grid{grid-template-columns:minmax(0,1fr)}.demo-wrap .shelf-pagination{gap:10px;padding:14px 2px 4px}.demo-wrap .shelf-page-controls{justify-content:center}.demo-wrap .demo-book{padding:12px}}

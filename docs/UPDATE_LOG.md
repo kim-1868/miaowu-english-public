@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-11-02｜从私人 app.js 拆分纯 DOM 书架分页组件（待 PR 验证）
+
+- **源逻辑**：私人 V1.1 `public/app.js` `renderShelfPagination`，参考固定 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`；只移出分页渲染，不移出书籍查询、用户书架、权限或数据库。
+- **公共新文件**：`public/shelf-pagination.js`、`showcase/shelf-pagination-contract.html/css/js`、`tests/public-shelf-pagination.test.mjs`。`MiaowuShelfPagination.create({document}).render({container,meta,currentPage,onPageChange})` 提供只读视图，回调由私人集成方负责，不访问网络。
+- **验收计划**：Node 合成 DOM/页码边界/重复渲染/回调与无权限检查；公共 Chromium 320/390/1440px 真实点击。公共交付包 25→26 文件并同步 SHA-256/只读差异预检。
+- **私人影响**：原 `app.js` 仍原样工作，无线上或预览部署；以后整合前必须删除原分页函数并按最新私人代码测试真实书架和分类切换，不能重复渲染。
+
+
 ### 2026-11-07 · PUBLIC-11-01｜从私人 app.js 拆分公开阅读控制组件（已合并）
 
 - **源逻辑**：私人 V1.1 `public/app.js`，参考 SHA `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`。仅提取全站夜间切换与阅读字体/标题缩放逻辑，不复制小说、用户、订单、权限或学习持久化内容。

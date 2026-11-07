@@ -134,3 +134,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## PUBLIC-11-01 首个可公开的 app.js 控制组件（2026-11-07）
 
 已在公共独立分支 `feature/public11-reader-preferences-component-20261107` 开发 `public/reader-preferences.js` 及合成阅读页面测试。它仅提供日夜切换、12–24px 字号/标题联动等展示逻辑；私人原 `app.js` 仍运行，未替换/部署。公共 PR、Node 测试和 Chromium 将独立验证；后续接入私人时必须审阅最新私人 `app.js` 的重复事件、字号持久化和移动端 CSS 差异。
+
+
+## PUBLIC-11-02 书架分页纯展示层（2026-11-07）
+
+基于私人 V1.1 `renderShelfPagination`，公共创建独立 DOM 分页器。通过注入 `meta/currentPage/onPageChange` 在公共用合成数据测试；不读取私人书库、订单、API 或 D1。交付包白名单由 25 增为 26。此时仍不在私人 `app.js` 安装，以免覆盖同时开发的功能。
