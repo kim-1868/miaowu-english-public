@@ -10,7 +10,8 @@
 - **更改**：公共 `.github/workflows/public-guard.yml` 将 push 检查限定为 `main`，feature 分支默认只在创建/更新 PR 时运行，并提供 `workflow_dispatch` 手工检查入口。过时任务仍自动取消；继续使用只读权限、Node 22、白名单、离线检查，无生产部署。
 - **测试**：新增 `tests/workflow-triggers.test.mjs` 校验触发条件、只读权限、取消过时任务和离线安全门禁；文件清单与公共更新日志同步维护。
 - **私人影响**：无；私人 GitHub Actions 2,000 分钟上限**不会**因本优化消失。本修改仅降低公共仓库重复检查和等待。
-- **验证**：待 PR CI 完成后追加最终 SHA 与结果；没有发布真实网站。
+- **合并**：[PR #8](https://github.com/kim-1868/miaowu-english-public/pull/8) 已 Squash 合并到公共 `main`，提交 `2656e0acdbcb77ab3c329b5776f81a72c2553c3a`。
+- **验证**：PR Actions [42382432358](https://github.com/kim-1868/miaowu-english-public/actions/runs/42382432358) 成功；合并后 `main` Actions [42382464164](https://github.com/kim-1868/miaowu-english-public/actions/runs/42382464164) 也成功。检查 feature 分支新提交没有额外触发 push 检查，仅在 PR 创建时运行。没有发布真实网站。
 
 
 ### 2026-11-07 · PUBLIC-03｜跨设备书架、阅读、词卡样式与测试
