@@ -29,6 +29,16 @@ jobs:
         run: npm run check
       - name: Verify safe UI behavior and file boundary
         run: npm test
+      - name: Build audited 18-file public UI delivery package
+        run: npm run build:public-ui
+      - name: Publish immutable public UI handoff artifact (main only)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: wordletter-public-ui-${{ github.sha }}
+          path: dist-public-ui/
+          if-no-files-found: error
+          retention-days: 14
       - name: Verify Git formatting and conflict markers
         shell: bash
         run: |

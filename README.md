@@ -47,3 +47,9 @@ npm run dev
 ## PUBLIC-03 移动端样式独立验证
 
 可通过 `npm run dev` 打开 `/showcase/responsive-contract.html` 查看使用真实公共 CSS 选择器的合成书架、词卡和阅读器，切换夜间模式与 12–24px 字号。该演示只做样式/交互检验，不会保存学习状态，不影响线上用户。
+
+## 公共更新构建与交付（PUBLIC-06）
+
+公开前端的 18 个已审核 UI 文件可用 `npm run build:public-ui` 构建为 `dist-public-ui/`，其中 `manifest.json` 包含各文件 SHA-256 校验值与源提交 SHA。公共 `main` 通过 GitHub Actions 后自动上传名为 `wordletter-public-ui-<完整 SHA>` 的构建产物，保留 14 天。构建不需要私人仓库访问、Cloudflare Token 或 D1 权限。
+
+**注意**：构建产物不是完整网站，也不自动推送至私人仓库或生产环境。私人发布流程须对固定 SHA 做逐文件审阅与校验，并在私人环境验证业务/权益和上线门禁；严禁把私人资料复制到公共仓库。

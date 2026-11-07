@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-07 · PUBLIC-06｜公开前端构建/交付迁移（进行中）
+
+- **目标**：公共 Actions 构建独立、可复核的前端更新包，私人仓库只进行最终敏感集成和受控发布。
+- **改动**：新增 `scripts/build-public-ui.mjs` 和 `tests/public-bundle.test.mjs`、更新 `package.json`、安全白名单、`.gitignore`、公共工作流与 README；仅选择 18 个经安全审查的 JS/CSS/SVG 文件。
+- **构建交付**：生成 `dist-public-ui/manifest.json`，逐文件 SHA-256，记录公共代码完整提交；公共 `main` 检查通过后保留 14 天 Actions artifact；不自动部署、不联系私人仓库。
+- **验证与版本**：待公共 PR 和 main CI 验收后补全；无私人业务改动。
+
+
 ### 2026-11-07 · PUBLIC-05｜公共仓库 CI 重复触发优化
 
 - **位置**：公共仓库 [Issue #7](https://github.com/kim-1868/miaowu-english-public/issues/7)，独立开发分支 `feature/public05-ci-trigger-dedupe-20261107`。
