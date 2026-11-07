@@ -4,11 +4,11 @@
 
 ## 更新记录
 
-### 2026-11-07 · PUBLIC-08｜公开 UI 的 Chromium 多屏宽验证（PR 待验收）
+### 2026-11-07 · PUBLIC-08｜公开 UI 的 Chromium 多屏宽验证（已合并）
 
 - 在公共标准 GitHub Actions 使用支持 Playwright 1.56.1 的 Ubuntu 24.04，针对完全虚构的书架/阅读器/词卡做真实 Chromium 布局检查，不使用私人数据库或 Cloudflare 密钥。
 - 手机 320/375/390/430px、平板 768px、电脑 1024/1440px，验证无横向溢出、移动触控区、字号 12–24px、日/夜模式对比，并上传人工合成截图供审核。
-- 关联 [Issue #12](https://github.com/kim-1868/miaowu-english-public/issues/12) 与 [PR #13](https://github.com/kim-1868/miaowu-english-public/pull/13)；本 PR 不触碰私人站，也不部署 Cloudflare。正式 Actions 验证结果待补。
+- 关联 [Issue #12](https://github.com/kim-1868/miaowu-english-public/issues/12) 与 [PR #13](https://github.com/kim-1868/miaowu-english-public/pull/13)。PR 已合并到公共 `main`，版本 `323d7c470af5127be9175341e5a56954f9b5fc36`；[Chromium 七屏宽检查 42384640070](https://github.com/kim-1868/miaowu-english-public/actions/runs/42384640070) 通过，合成页面截图 Artifact `public-ui-browser-829dcba65bf18bf04da58a312e5ea4b0387fa32c` 已生成；[公共主分支检查 42384719422](https://github.com/kim-1868/miaowu-english-public/actions/runs/42384719422) 通过。**未部署 Cloudflare、未运行真实手机/生产站测试**。
 
 
 ### 2026-11-07 · PUBLIC-07｜小说标注结构的公开合成测试（公共 CI 已通过并合并）
@@ -20,12 +20,12 @@
 - **合并**：[公共 PR #11](https://github.com/kim-1868/miaowu-english-public/pull/11) 已 squash 合并，公共提交 `ff09906fe709dc14683f8c43feecdf9f4a6b4ba4`。**生产影响**：无。没有修改正式/预览站、D1、用户学习记录及付费系统，也没有部署。
 
 
-### 2026-11-07 · PUBLIC-06｜公开前端构建/交付迁移（进行中）
+### 2026-11-07 · PUBLIC-06｜公开前端构建/交付迁移（已完成）
 
 - **目标**：公共 Actions 构建独立、可复核的前端更新包，私人仓库只进行最终敏感集成和受控发布。
 - **改动**：新增 `scripts/build-public-ui.mjs` 和 `tests/public-bundle.test.mjs`、更新 `package.json`、安全白名单、`.gitignore`、公共工作流与 README；仅选择 18 个经安全审查的 JS/CSS/SVG 文件。
 - **构建交付**：生成 `dist-public-ui/manifest.json`，逐文件 SHA-256，记录公共代码完整提交；公共 `main` 检查通过后保留 14 天 Actions artifact；不自动部署、不联系私人仓库。
-- **验证与版本**：待公共 PR 和 main CI 验收后补全；无私人业务改动。
+- **合并与验证**：[PR #10](https://github.com/kim-1868/miaowu-english-public/pull/10) 已合并，版本 `199c9c4631f0e50f8646bfd46ef9d71ed88afbbf`。公共 [main Actions #42383632259](https://github.com/kim-1868/miaowu-english-public/actions/runs/42383632259) 全部通过，已核实构建包 `wordletter-public-ui-199c9c4631f0e50f8646bfd46ef9d71ed88afbbf`（Artifact ID 13578762144）。只包含 18 个公开前端文件与 SHA-256 清单，没有私人业务代码，也无私人站或 D1 变更。
 
 
 ### 2026-11-07 · PUBLIC-05｜公共仓库 CI 重复触发优化
