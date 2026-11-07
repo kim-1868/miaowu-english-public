@@ -124,3 +124,8 @@ PUBLIC-02 在独立公共分支 `feature/public02-announcement-qa-20261107` 中�
 ## 11. PUBLIC-10 公共优先的页面和客户端迁移（2026-11-07）
 
 固定源 `0cf00b37ffa029997436fa3c0b2c67e35b114aa4`，安全复制首页、更新日志页、刷词、章节词汇、剧情回声及新手引导的 **6 个公开文件**，公共交付包扩至 24 项。[PR #17](https://github.com/kim-1868/miaowu-english-public/pull/17) 已合并、CI/Chromium 均通过。此后公开界面的更新直接在公共开发，并按 [代码所有权及交付规则](PUBLIC_FRONTEND_OWNERSHIP_20261107.md) 处理；付费/鉴权/小说/订单及 D1 不迁出私人。发布前仍需整合 4 个差异文件和私人整体验收。
+
+
+## 12. PUBLIC-11 下一阶段：公共 UI 从私人 app.js 有序拆分（2026-11-07）
+
+已创建 [PUBLIC-11 Issue #18](https://github.com/kim-1868/miaowu-english-public/issues/18)。公共首页现在拥有实际标记源，但核心私人 `app.js` 仍混合 UI 与受保护业务；以后逐个迁移纯展示 DOM、书架/导航、阅读工具栏和词卡视图，不直接复制私人的 `app.js`。每次拆分均用公共合成接口契约与 Chromium 回归，保持私人服务器权限/学习状态/付费判断独立。用户正在完善 V1.1 时，不自动覆盖私人分支，待版本审阅后再整合。
