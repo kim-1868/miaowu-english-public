@@ -9,7 +9,7 @@
 - 补充完全虚构的词卡 ID → 英文词形/中文释义稳定映射测试，阻止同 ID 被偷偷改成新义项；重复出现同义项不算新增词卡。
 - 私人 W3.2 只修正本机 UI / 提示信息 / 章节密度与修订守卫；独立支持从 V2 或 W3.1 升级、源文件哈希预检、自动备份、失败回滚、不覆盖旧书与新章。
 - 公共仓库没有真实书稿、考试词库、任何 CLI 模型调用、私密文件/令牌、D1 或 V1.1 部署。合成测试不代表真人浏览器或私有业务验收通过。
-- 公共 CI 结果在合并后补记。
+- **公开 CI 已完成**：[PR #33](https://github.com/kim-1868/miaowu-english-public/pull/33) 通过 [公共 Actions #42455084214](https://github.com/kim-1868/miaowu-english-public/actions/runs/42455084214) 后合并，Squash commit `db5b17fe1f23c43d41ce0d08c1380fd27646f63f`；私人 Actions 0。真实 W3.2 补丁仅在私人 Library，用户 Mac 尚待安装验收。
 
 
 ### 2026-11-08 · PUBLIC-SF-W31｜章节审核与定向修订公共安全契约（候选）
