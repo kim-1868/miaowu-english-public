@@ -21,3 +21,17 @@ export function inspectRepairSubmission({preflightSha,actualSha,modelRunning=fal
  if(!confirmed)issues.push("HUMAN_CONFIRMATION_REQUIRED");
  return {canApply:issues.length===0,issues,publicationEligible:false};
 }
+
+/** Public synthetic-only invariant: each stable word ID must retain its source surface/gloss.
+ * This conservative restriction prevents silently changing a known card to another sense.
+ */
+export function inspectStableWordFaces(original, candidate){
+ const issues=[];
+ const shape=rows=>Array.isArray(rows)&&rows.every(r=>r&&typeof r.id==="string"&&r.id&&typeof r.surface==="string"&&r.surface.trim()&&typeof r.gloss==="string"&&r.gloss.trim());
+ if(!shape(original)||!shape(candidate))return {ok:false,issues:["INVALID_WORD_FACES"]};
+ const key=row=>row.id+"\u0000"+row.surface.trim().toLocaleLowerCase("en-US")+"\u0000"+row.gloss.trim();
+ const unique=list=>new Set(list.map(key));
+ const a=unique(original),b=unique(candidate);
+ if(a.size!==b.size||[...a].some(x=>!b.has(x)))issues.push("WORD_SURFACE_OR_GLOSS_CHANGED_FOR_ID");
+ return {ok:issues.length===0,issues};
+}
