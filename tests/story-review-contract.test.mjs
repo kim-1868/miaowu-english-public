@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {reviewChapterGate,inspectRepairSubmission} from "../scripts/story-review-contract.mjs";
+import {reviewChapterGate,inspectRepairSubmission,inspectStableWordFaces} from "../scripts/story-review-contract.mjs";
 test("saved chapters have separate density and teaching status",()=>{
  assert.equal(reviewChapterGate({saved:true,densityP1:0,densityP2:0}).state,"density-passed-teaching-pending");
  assert.equal(reviewChapterGate({saved:true,densityP1:1}).state,"density-failed");
@@ -29,4 +29,21 @@ test("candidate installation needs matching original SHA and no active model",()
 test("invalid counts never unlock generation",()=>{
  assert.equal(reviewChapterGate({saved:true,densityP1:-1}).mayContinueGeneration,false);
  assert.equal(reviewChapterGate({saved:true,densityP2:NaN}).mayContinueGeneration,false);
+});
+
+test("stable word ID cannot silently take an unrelated surface or teaching gloss",()=>{
+ const a=[{id:"synthetic-01",surface:"arrive",gloss:"到达"}];
+ assert.equal(inspectStableWordFaces(a,[...a]).ok,true);
+ assert.equal(inspectStableWordFaces(a,[{id:"synthetic-01",surface:"depart",gloss:"到达"}]).ok,false);
+ assert.equal(inspectStableWordFaces(a,[{id:"synthetic-01",surface:"arrive",gloss:"离开"}]).ok,false);
+});
+test("duplicate occurrences of the same synthetic sense do not change identity",()=>{
+ const a=[{id:"synthetic-01",surface:"arrive",gloss:"到达"}];
+ const b=[...a,...a];
+ assert.equal(inspectStableWordFaces(a,b).ok,true);
+});
+test("invalid or missing lexical face blocks a candidate",()=>{
+ const a=[{id:"synthetic-01",surface:"arrive",gloss:"到达"}];
+ assert.equal(inspectStableWordFaces(a,[{id:"synthetic-01",surface:" ",gloss:"到达"}]).ok,false);
+ assert.equal(inspectStableWordFaces(a,null).ok,false);
 });
