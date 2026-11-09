@@ -4,6 +4,14 @@
 
 ## 更新记录
 
+### 2026-11-09 · PUBLIC-NOVEL-REVISION｜已下架小说更新的公共合成回归（PR 待验收）
+
+- 将下一阶段**可公开部分**的小说修订安全回归放入公共仓库：纯数据模型验证旧书/章节 ID、已发布后下架状态、历史词卡不可变、旧版备份、额外确认与绝不自动上架。
+- 新增 `scripts/novel-revision-contract.mjs`、`tests/novel-revision-contract.test.mjs`；调整公共白名单与 `npm run check`。已存在的公共 Actions 将运行 `npm test`，后续不必为纯契约改动启动私有 Actions。
+- 不迁移真实三本小说、可售 JSON/封面、云端密钥、运营台后端、D1、生产发布工作流或私有 Git 历史。私有 PR #203 仍为待验收/未部署状态；生产 D1 只读预检与账户账单问题仍要独立解决。
+- PR、最终 SHA 和公共 Actions 结论待填写，见 `PUBLIC_NOVEL_REVISION_HANDOFF_20261109.md`。
+
+
 ### 2026-11-08 · PUBLIC-SF-W32｜小说工厂稳定增量补丁公共合成守卫（候选）
 
 - 补充完全虚构的词卡 ID → 英文词形/中文释义稳定映射测试，阻止同 ID 被偷偷改成新义项；重复出现同义项不算新增词卡。

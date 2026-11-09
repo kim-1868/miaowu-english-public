@@ -137,3 +137,8 @@ node scripts/plan-public-ui-handoff.mjs /path/to/unpacked-public-artifact /path/
 ## PUBLIC-DEV-CORE-WAVE1：把小说导入/混排审校/复习计算的公开部分接入公共测试（2026-11-08）
 
 公共仓库已新增从私人 V1.1 固定 SHA 审查后复制的 **3 个无 D1、无网络的纯逻辑模块**：`public/novel-file-parser.js`、`src/editorial-code-switch-lint.js`、`src/spaced-review.js`。测试只使用虚构故事、合成单词，并通过 Git blob 校验来源一致；公共 `npm run check` / `npm test` 覆盖，不需要私人 Actions。详见 [第一批公开代码迁移与隔离规则](docs/PUBLIC_DEV_CORE_WAVE1_20261108.md)。原私人仓库和线上代码没有改动；公共 UI Release 仍固定 29 个资源，不会将私人内容打包公开。
+
+
+## 2026-11-09：小说修订的公共优先测试
+
+针对私有仓库 GitHub Actions 的付款/预算限制，新增纯合成的已下架小说修订安全契约（`scripts/novel-revision-contract.mjs`、`tests/novel-revision-contract.test.mjs`），由公共 Actions 负责身份稳定、旧词卡不可改写、二次确认、旧版快照、无自动上架等通用测试。真实小说、运营台权限、生产 D1 和发布逻辑继续留在私人仓库。具体交接与放行条件见 [公共小说修订交接](docs/PUBLIC_NOVEL_REVISION_HANDOFF_20261109.md)。公共测试通过不等于正式站已更新。
