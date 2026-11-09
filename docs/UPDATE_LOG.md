@@ -4,6 +4,13 @@
 
 ## 更新记录
 
+### 2026-11-09 · PUBLIC-PACKAGE-PREFLIGHT｜上传前 JSON 结构与旧 ID 对照
+
+- 新增纯离线 `scripts/inspect-novel-package.mjs` 与合成测试，报告章节/词卡/标注、必填字段、长段无英文、原书 ID/章节 ID/同义项词卡 ID 漂移及上传上限。
+- 已审阅会话文件《月光便利店的最后一单》新版：8 章、140 卡、236 标注、72 段；字段空缺与找不到词卡的引用均为零；但未能对比原版生产历史。
+- 程序不读取 Cloudflare/D1、不上传真实小说、不绕过私有运营权限。生产修复候选仍在私人 PR #203，正式站未部署。
+
+
 ### 2026-11-09 · PUBLIC-409｜旧书上传入口自动识别合成回归
 
 - 公共仓库新增 `scripts/novel-upload-route-contract.mjs` 和 11 条 `tests/novel-upload-route-contract.test.mjs`，模拟旧书版本化修订、首次确认和历史下架二次确认、同名不同 ID 阻断及不误调用新书创建。
