@@ -25,6 +25,12 @@ test("homepage HTML is presentation shell; authentication code is not copied",()
  assert.doesNotMatch(html, /<script[^>]+src="\/(?:ops|editor|claim)\b/i);
 });
 
+test("CET-4 homepage heading does not imply only core vocabulary",()=>{
+ const html=src("public/index.html");
+ assert.match(html, /id="selectedCategoryTitle">四级 · 故事精选<\/h2>/);
+ assert.doesNotMatch(html, /四级核心词/);
+});
+
 test("public updates page owns no actual announcement publishing privilege",()=>{
  const html=src("public/updates.html");
  for(const id of ["siteUpdateHistory","siteUpdateHistoryStatus","siteUpdateMore"]) {
